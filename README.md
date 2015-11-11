@@ -1,2 +1,2 @@
 # Aquarium
-Environment for controlling Infusoria AI units
+Environment for controlling [Infusoria](https://github.com/krre/infusoria) AI units
