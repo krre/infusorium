@@ -3,6 +3,8 @@ QT += opengl qml quick
 CONFIG += c++11
 TEMPLATE = app
 
+include(../qosg/src/qosg.pri)
+
 SOURCES += \
     src/cpp/main.cpp
 
