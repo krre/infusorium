@@ -10,24 +10,9 @@ ApplicationWindow {
     height: 600
     visible: true
 
-    Osg.Viewer {
+    TabView {
+        id: tabView
         anchors.fill: parent
-        camera {
-            clearColor: "gray"
-            fovy: 30
-            aspectRatio: width / height
-            zNear: 0.1
-            zFar: 10000
-        }
-
-        sceneData: Osg.Geode {
-
-            Osg.ShapeDrawable {
-                color: "red"
-                shape: Osg.Box {
-                    halfLengths: Qt.vector3d(0.5, 0.5, 0.5)
-                }
-            }
-        }
+        frameVisible: false
     }
 }
