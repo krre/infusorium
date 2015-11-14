@@ -5,7 +5,7 @@ import "main"
 
 ApplicationWindow {
     id: mainRoot
-    title: "Aquarium"
+    title: APP.name
     width: 800
     height: 600
     visible: true

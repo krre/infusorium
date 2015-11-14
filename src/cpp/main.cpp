@@ -1,16 +1,22 @@
 #include <QApplication>
 #include <QtQml>
 #include <registerosgtypes.h>
+#include "app.h"
 
 int main(int argc, char* argv[])
 {
-    QApplication app(argc, argv);
-    app.setApplicationName("Aquarium");
+    QApplication appication(argc, argv);
+    appication.setApplicationName(App::name());
+    appication.setApplicationVersion(App::version());
 
     registerOsgTypes();
 
+    App app;
+
     QQmlApplicationEngine engine;
+
+    engine.rootContext()->setContextProperty("APP", &app);
     engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
 
-    return app.exec();
+    return appication.exec();
 }

@@ -14,3 +14,6 @@ RESOURCES += \
 DISTFILES += \
     src/qml/main.qml \
     src/qml/main/MainMenu.qml
+
+HEADERS += \
+    src/cpp/app.h

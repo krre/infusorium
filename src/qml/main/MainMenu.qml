@@ -103,7 +103,7 @@ MenuBar {
         title: qsTr("Help")
 
         MenuItem {
-            text: qsTr("About Aquarium...")
+            text: qsTr(String("About %1...").arg(APP.name))
         }
     }
 }
