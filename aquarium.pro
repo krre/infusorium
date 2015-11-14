@@ -15,7 +15,8 @@ DISTFILES += \
     src/qml/main.qml \
     src/qml/main/MainMenu.qml \
     src/js/utils.js \
-    src/qml/main/About.qml
+    src/qml/main/About.qml \
+    src/qml/main/Options.qml
 
 HEADERS += \
     src/cpp/global/app.h
