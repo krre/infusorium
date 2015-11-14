@@ -13,7 +13,8 @@ RESOURCES += \
 
 DISTFILES += \
     src/qml/main.qml \
-    src/qml/main/MainMenu.qml
+    src/qml/main/MainMenu.qml \
+    src/js/utils.js
 
 HEADERS += \
     src/cpp/global/app.h
