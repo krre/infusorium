@@ -1,5 +1,6 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
+import "../../js/utils.js" as Utils
 
 MenuBar {
     property alias recentUnitsModel: recentUnitsModel
@@ -104,6 +105,7 @@ MenuBar {
 
         MenuItem {
             text: qsTr(String("About %1...").arg(APP.name))
+            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/main/About.qml")
         }
     }
 }
