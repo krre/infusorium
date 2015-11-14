@@ -15,7 +15,31 @@ void Settings::setValue(const QString& group, const QString& key, const QVariant
     settings->endGroup();
 }
 
-QVariant Settings::value(const QString &group, const QString &key)
+QVariant Settings::value(const QString& group, const QString& key)
 {
     return settings->value(QString("%1/%2").arg(group).arg(key));
+}
+
+void Settings::setMap(const QString& group, const QVariantMap& map)
+{
+    settings->beginGroup(group);
+    QMapIterator<QString, QVariant> i(map);
+    while (i.hasNext()) {
+        i.next();
+        settings->setValue(i.key(), i.value());
+    }
+    settings->endGroup();
+}
+
+QVariantMap Settings::map(const QString& group)
+{
+    settings->beginGroup(group);
+    QVariantMap map;
+    QStringListIterator i(settings->allKeys());
+    while (i.hasNext()) {
+        QString key = i.next();
+        map[key] = settings->value(key);
+    }
+    settings->endGroup();
+    return map;
 }
