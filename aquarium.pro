@@ -12,4 +12,5 @@ RESOURCES += \
     src/qml.qrc
 
 DISTFILES += \
-    src/qml/main.qml
+    src/qml/main.qml \
+    src/qml/main/MainMenu.qml
