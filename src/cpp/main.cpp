@@ -1,7 +1,7 @@
 #include <QApplication>
 #include <QtQml>
 #include <registerosgtypes.h>
-#include "app.h"
+#include "global/app.h"
 
 int main(int argc, char* argv[])
 {
