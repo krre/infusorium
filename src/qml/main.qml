@@ -12,6 +12,10 @@ ApplicationWindow {
 
     menuBar: MainMenu {}
 
+    onClosing: {
+        SETTINGS.setValue("MainWindow", "x", x)
+    }
+
     TabView {
         id: tabView
         anchors.fill: parent

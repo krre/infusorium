@@ -6,7 +6,8 @@ TEMPLATE = app
 include(../qosg/src/qosg.pri)
 
 SOURCES += \
-    src/cpp/main.cpp
+    src/cpp/main.cpp \
+    src/cpp/global/settings.cpp
 
 RESOURCES += \
     src/qml.qrc
@@ -19,4 +20,5 @@ DISTFILES += \
     src/qml/main/Options.qml
 
 HEADERS += \
-    src/cpp/global/app.h
+    src/cpp/global/app.h \
+    src/cpp/global/settings.h
