@@ -13,6 +13,7 @@ class App : public QObject
     Q_PROPERTY(unsigned int major READ major CONSTANT)
     Q_PROPERTY(unsigned int minor READ minor CONSTANT)
     Q_PROPERTY(unsigned int patch READ patch CONSTANT)
+    Q_PROPERTY(QString buildDate READ buildDate CONSTANT)
 
 public:
     static unsigned int major() { return MAJOR; }
@@ -20,4 +21,5 @@ public:
     static unsigned int patch() { return PATCH; }
     static QString version() { return QString("%1.%2.%3").arg(MAJOR).arg(MINOR).arg(PATCH); }
     static QString name() { return QString("Aquarium"); }
+    static QString buildDate() { return QString(__DATE__); }
 };
