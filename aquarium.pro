@@ -18,7 +18,8 @@ DISTFILES += \
     src/js/utils.js \
     src/qml/main/About.qml \
     src/qml/main/Options.qml \
-    src/js/settings.js
+    src/js/settings.js \
+    src/qml/components/BrowseButton.qml
 
 HEADERS += \
     src/cpp/global/app.h \

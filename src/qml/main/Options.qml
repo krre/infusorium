@@ -2,6 +2,7 @@ import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.2
 import QtQuick.Window 2.2
+import "../components"
 import "../../js/utils.js" as Utils
 
 Window {
@@ -52,9 +53,8 @@ Window {
                             Layout.fillWidth: true
                         }
 
-                        Button {
-                            implicitWidth: 30
-                            text: "..."
+                        BrowseButton {
+                            onClicked: {}
                         }
 
                         Label {
@@ -66,9 +66,8 @@ Window {
                             Layout.fillWidth: true
                         }
 
-                        Button {
-                            implicitWidth: 30
-                            text: "..."
+                        BrowseButton {
+                            onClicked: {}
                         }
                     }
                 }
