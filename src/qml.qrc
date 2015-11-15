@@ -14,5 +14,10 @@
         <file>qml/components/WindowDialog.qml</file>
         <file>qml/unit/NewUnit.qml</file>
         <file>qml/infusoria/InfusoriaConsole.qml</file>
+        <file>qml/components/messagedialog/MessageDialogBase.qml</file>
+        <file>qml/components/messagedialog/MessageDialogError.qml</file>
+        <file>qml/components/messagedialog/MessageDialogInformation.qml</file>
+        <file>qml/components/messagedialog/MessageDialogQuestion.qml</file>
+        <file>qml/components/messagedialog/MessageDialogWarning.qml</file>
     </qresource>
 </RCC>

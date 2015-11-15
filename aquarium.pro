@@ -28,7 +28,12 @@ DISTFILES += \
     src/js/dialog.js \
     src/qml/components/WindowDialog.qml \
     src/qml/unit/NewUnit.qml \
-    src/qml/infusoria/InfusoriaConsole.qml
+    src/qml/infusoria/InfusoriaConsole.qml \
+    src/qml/components/messagedialog/MessageDialogBase.qml \
+    src/qml/components/messagedialog/MessageDialogError.qml \
+    src/qml/components/messagedialog/MessageDialogInformation.qml \
+    src/qml/components/messagedialog/MessageDialogQuestion.qml \
+    src/qml/components/messagedialog/MessageDialogWarning.qml
 
 HEADERS += \
     src/cpp/global/app.h \
