@@ -14,7 +14,7 @@ ApplicationWindow {
 
     Component.onCompleted: {
         var geometry = SETTINGS.map("MainWindow")
-        if (geometry.length) {
+        if (Object.keys(geometry).length) {
             x = geometry.x
             y = geometry.y
             width = geometry.width
