@@ -9,15 +9,12 @@ import "../../js/dialog.js" as Dialog
 Window {
     id: root
     title: qsTr("Options")
-    width: 400
+    width: 500
     height: 200
     minimumWidth: 200
     minimumHeight: 200
     visible: true
     modality: Qt.ApplicationModal
-
-    Component.onCompleted: {
-    }
 
     onVisibleChanged: if (!visible) root.destroy()
 
@@ -58,7 +55,7 @@ Window {
                             onClicked: {
                                 var selectFileDialog = Dialog.selectFile(root)
                                 selectFileDialog.accepted.connect(function() {
-                                    executablePath.text = selectFileDialog.fileUrl
+                                    executablePath.text = UTILS.urlToPath(selectFileDialog.fileUrl)
                                 })
                             }
                         }
@@ -70,13 +67,14 @@ Window {
                         TextField {
                             id: workspacePath
                             Layout.fillWidth: true
+                            text: UTILS.homePath
                         }
 
                         BrowseButton {
                             onClicked: {
                                 var selectDirectoryDialog = Dialog.selectDirectory(root)
                                 selectDirectoryDialog.accepted.connect(function() {
-                                    workspacePath.text = selectDirectoryDialog.fileUrl
+                                    workspacePath.text = UTILS.urlToPath(selectDirectoryDialog.fileUrl)
                                 })
                             }
                         }
