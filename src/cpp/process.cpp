@@ -8,6 +8,7 @@ Process::Process()
 
 void Process::run(const QString& program, const QStringList& arguments)
 {
+    message(program + " " + arguments.join(" "));
     if (arguments.count()) {
         start(program, arguments);
     } else {
