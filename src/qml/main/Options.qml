@@ -49,6 +49,7 @@ Window {
                         TextField {
                             id: executablePath
                             Layout.fillWidth: true
+                            text: SETTINGS.value("Infusoria", "executable")
                         }
 
                         BrowseButton {
@@ -67,7 +68,7 @@ Window {
                         TextField {
                             id: workspacePath
                             Layout.fillWidth: true
-                            text: UTILS.homePath
+                            text: SETTINGS.value("Infusoria", "workspace", UTILS.homePath)
                         }
 
                         BrowseButton {
@@ -90,7 +91,11 @@ Window {
                 Layout.margins: 10
                 Layout.rightMargin: 0
                 text: qsTr("OK")
-                onClicked: root.destroy()
+                onClicked: {
+                    SETTINGS.setValue("Infusoria", "executable", executablePath.text)
+                    SETTINGS.setValue("Infusoria", "workspace", workspacePath.text)
+                    root.destroy()
+                }
             }
 
             Button {
