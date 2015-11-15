@@ -45,12 +45,10 @@ WindowDialog {
 
             BrowseButton {
                 onClicked: {
-                    onClicked: {
-                        var selectDirectoryDialog = Dialog.selectDirectory(root)
-                        selectDirectoryDialog.accepted.connect(function() {
-                            directory.text = UTILS.urlToPath(selectDirectoryDialog.fileUrl)
-                        })
-                    }
+                    var selectDirectoryDialog = Dialog.selectDirectory(root)
+                    selectDirectoryDialog.accepted.connect(function() {
+                        directory.text = UTILS.urlToPath(selectDirectoryDialog.fileUrl)
+                    })
                 }
             }
         }
