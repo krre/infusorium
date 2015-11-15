@@ -11,5 +11,6 @@
         <file>qml/components/filedialog/FileDialogDirectory.qml</file>
         <file>qml/components/filedialog/FileDialogOpen.qml</file>
         <file>js/dialog.js</file>
+        <file>qml/components/WindowDialog.qml</file>
     </qresource>
 </RCC>

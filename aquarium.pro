@@ -24,7 +24,8 @@ DISTFILES += \
     src/qml/components/filedialog/FileDialogBase.qml \
     src/qml/components/filedialog/FileDialogDirectory.qml \
     src/qml/components/filedialog/FileDialogOpen.qml \
-    src/js/dialog.js
+    src/js/dialog.js \
+    src/qml/components/WindowDialog.qml
 
 HEADERS += \
     src/cpp/global/app.h \
