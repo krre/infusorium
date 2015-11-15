@@ -27,6 +27,7 @@ WindowDialog {
         TextField {
             id: name
             Layout.fillWidth: true
+            Component.onCompleted: forceActiveFocus()
         }
 
         Label {
