@@ -3,6 +3,7 @@ import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.2
 import "../components"
 import "../../js/dialog.js" as Dialog
+import "../../js/utils.js" as Utils
 
 WindowDialog {
     id: root
@@ -12,12 +13,11 @@ WindowDialog {
 
     onAccepted: {
         var unitPath = directory.text + "/" + name.text + ".infu"
-        print(unitPath)
+        createObjInMainContext("qrc:/qml/infusoria/InfusoriaConsole.qml", { unitPath: unitPath })
     }
 
     GridLayout {
-        x: 10
-        width: scrollView.width - 20
+        width: parent.width
         columns: 2
 
         Label {

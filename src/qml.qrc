@@ -13,5 +13,6 @@
         <file>js/dialog.js</file>
         <file>qml/components/WindowDialog.qml</file>
         <file>qml/unit/NewUnit.qml</file>
+        <file>qml/infusoria/InfusoriaConsole.qml</file>
     </qresource>
 </RCC>

@@ -26,7 +26,8 @@ DISTFILES += \
     src/qml/components/filedialog/FileDialogOpen.qml \
     src/js/dialog.js \
     src/qml/components/WindowDialog.qml \
-    src/qml/unit/NewUnit.qml
+    src/qml/unit/NewUnit.qml \
+    src/qml/infusoria/InfusoriaConsole.qml
 
 HEADERS += \
     src/cpp/global/app.h \
