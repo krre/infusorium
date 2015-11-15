@@ -11,6 +11,7 @@ MenuBar {
         MenuItem {
             text: qsTr("New...")
             shortcut: "Ctrl+N"
+            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/unit/NewUnit.qml")
         }
 
         MenuItem {

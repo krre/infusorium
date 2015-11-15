@@ -12,5 +12,6 @@
         <file>qml/components/filedialog/FileDialogOpen.qml</file>
         <file>js/dialog.js</file>
         <file>qml/components/WindowDialog.qml</file>
+        <file>qml/unit/NewUnit.qml</file>
     </qresource>
 </RCC>
