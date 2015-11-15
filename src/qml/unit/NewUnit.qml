@@ -12,8 +12,13 @@ WindowDialog {
     height: 100
 
     onAccepted: {
-        var unitPath = directory.text + "/" + name.text + ".infu"
-        createObjInMainContext("qrc:/qml/infusoria/InfusoriaConsole.qml", { unitPath: unitPath })
+        if (!name.text) {
+            stayOnScreen = true
+            Dialog.errorMessage(qsTr("Name is empty"))
+        } else {
+            var unitPath = directory.text + "/" + name.text + ".infu"
+            createObjInMainContext("qrc:/qml/infusoria/InfusoriaConsole.qml", { unitPath: unitPath })
+        }
     }
 
     GridLayout {

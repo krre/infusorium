@@ -8,6 +8,7 @@ Window {
     default property alias data: content.data
     property real indent: 10
     property int standardButtons: StandardButton.Ok | StandardButton.Cancel
+    property bool stayOnScreen
     id: root
     width: 500
     height: 500
@@ -41,8 +42,11 @@ Window {
                 text: qsTr("OK")
                 visible: (StandardButton.Ok & standardButtons) === StandardButton.Ok
                 onClicked: {
+                    stayOnScreen = false
                     root.accepted()
-                    root.destroy()
+                    if (!stayOnScreen) {
+                        root.destroy()
+                    }
                 }
             }
 
