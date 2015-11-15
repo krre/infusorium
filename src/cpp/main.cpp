@@ -4,12 +4,15 @@
 #include "global/app.h"
 #include "global/settings.h"
 #include "global/utils.h"
+#include "process.h"
 
 int main(int argc, char* argv[])
 {
     QApplication appication(argc, argv);
     appication.setApplicationName(App::name());
     appication.setApplicationVersion(App::version());
+
+    qmlRegisterType<Process>("Aquarium", 1, 0, "Process");
 
     registerOsgTypes();
 

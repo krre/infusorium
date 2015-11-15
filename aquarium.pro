@@ -8,7 +8,8 @@ include(../qosg/src/qosg.pri)
 SOURCES += \
     src/cpp/main.cpp \
     src/cpp/global/settings.cpp \
-    src/cpp/global/utils.cpp
+    src/cpp/global/utils.cpp \
+    src/cpp/process.cpp
 
 RESOURCES += \
     src/qml.qrc
@@ -32,4 +33,5 @@ DISTFILES += \
 HEADERS += \
     src/cpp/global/app.h \
     src/cpp/global/settings.h \
-    src/cpp/global/utils.h
+    src/cpp/global/utils.h \
+    src/cpp/process.h
