@@ -7,6 +7,7 @@ import "../components"
 
 WindowDialog {
     property string unitPath
+    property bool openAfterCreating: false
     title: qsTr("Infusoria Console")
     width: 600
     height: 400
@@ -14,6 +15,9 @@ WindowDialog {
 
     Component.onCompleted: {
         process.run(SETTINGS.value("Infusoria", "executable"), [unitPath, "-n"])
+        if (openAfterCreating) {
+            print(unitPath)
+        }
     }
 
     Process {

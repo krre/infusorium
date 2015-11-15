@@ -17,7 +17,7 @@ WindowDialog {
             Dialog.errorMessage(qsTr("Name is empty"))
         } else {
             var unitPath = directory.text + "/" + name.text + ".infu"
-            createObjInMainContext("qrc:/qml/infusoria/InfusoriaConsole.qml", { unitPath: unitPath })
+            createObjInMainContext("qrc:/qml/infusoria/InfusoriaConsole.qml", { unitPath: unitPath, openAfterCreating: openAfterCreating.checked })
         }
     }
 
@@ -56,6 +56,14 @@ WindowDialog {
                     })
                 }
             }
+        }
+
+        CheckBox {
+            id: openAfterCreating
+            text: qsTr("Open after creating")
+            Layout.column: 1
+            Layout.row: 2
+            checked: true
         }
     }
 }
