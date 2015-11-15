@@ -2,10 +2,12 @@ import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.2
 import QtQuick.Window 2.2
+import QtQuick.Dialogs 1.2
 
 Window {
-    default property alias data: scrollView.data
-    property alias scrollView: scrollView
+    default property alias data: content.data
+    property real indent: 10
+    property int standardButtons: StandardButton.Ok | StandardButton.Cancel
     id: root
     width: 500
     height: 500
@@ -21,23 +23,23 @@ Window {
 
     ColumnLayout {
         anchors.fill: parent
+        anchors.margins: indent
         Layout.alignment: Qt.AlignHCenter
-        spacing: 0
+        spacing: indent
 
-        ScrollView {
-            id: scrollView
+        Item {
+            id: content
             Layout.preferredWidth: parent.width
             Layout.fillHeight: true
-            frameVisible: false
-      }
+            clip: true
+        }
 
         RowLayout {
             Layout.alignment: Qt.AlignHCenter
 
             Button {
-                Layout.margins: 10
-                Layout.rightMargin: 0
                 text: qsTr("OK")
+                visible: (StandardButton.Ok & standardButtons) === StandardButton.Ok
                 onClicked: {
                     root.accepted()
                     root.destroy()
@@ -45,9 +47,17 @@ Window {
             }
 
             Button {
-                Layout.margins: 10
-                Layout.leftMargin: 0
                 text: qsTr("Cancel")
+                visible: (StandardButton.Cancel & standardButtons) === StandardButton.Cancel
+                onClicked: {
+                    root.rejected()
+                    root.destroy()
+                }
+            }
+
+            Button {
+                text: qsTr("Close")
+                visible: (StandardButton.Close & standardButtons) === StandardButton.Close
                 onClicked: {
                     root.rejected()
                     root.destroy()

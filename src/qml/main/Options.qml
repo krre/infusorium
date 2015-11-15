@@ -16,8 +16,7 @@ WindowDialog {
     }
 
     ColumnLayout {
-        x: 10
-        width: scrollView.width - 20
+        width: parent.width
 
         GroupBox {
             title: "Infusoria"
