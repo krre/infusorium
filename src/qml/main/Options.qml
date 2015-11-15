@@ -2,8 +2,9 @@ import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.2
 import QtQuick.Window 2.2
+import QtQuick.Dialogs 1.2
 import "../components"
-import "../../js/utils.js" as Utils
+import "../../js/dialog.js" as Dialog
 
 Window {
     id: root
@@ -54,7 +55,12 @@ Window {
                         }
 
                         BrowseButton {
-                            onClicked: {}
+                            onClicked: {
+                                var selectFileDialog = Dialog.selectFile(root)
+                                selectFileDialog.accepted.connect(function() {
+                                    executablePath.text = selectFileDialog.fileUrl
+                                })
+                            }
                         }
 
                         Label {
@@ -67,7 +73,12 @@ Window {
                         }
 
                         BrowseButton {
-                            onClicked: {}
+                            onClicked: {
+                                var selectDirectoryDialog = Dialog.selectDirectory(root)
+                                selectDirectoryDialog.accepted.connect(function() {
+                                    workspacePath.text = selectDirectoryDialog.fileUrl
+                                })
+                            }
                         }
                     }
                 }

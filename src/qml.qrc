@@ -7,5 +7,9 @@
         <file>qml/main/Options.qml</file>
         <file>js/settings.js</file>
         <file>qml/components/BrowseButton.qml</file>
+        <file>qml/components/filedialog/FileDialogBase.qml</file>
+        <file>qml/components/filedialog/FileDialogDirectory.qml</file>
+        <file>qml/components/filedialog/FileDialogOpen.qml</file>
+        <file>js/dialog.js</file>
     </qresource>
 </RCC>
