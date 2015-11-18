@@ -1,9 +1,11 @@
 function save() {
     geometrySave()
+    saveRecentUnits()
 }
 
 function load() {
     geometryLoad()
+    loadRecentUnits()
 }
 
 function geometrySave() {
@@ -33,3 +35,25 @@ function geometryLoad() {
     }
 }
 
+function saveRecentUnits() {
+    var model = mainMenu.recentUnitsModel
+    var list = []
+    for (var i = 0; i < model.count; i++) {
+        var filePath = model.get(i).filePath
+        if (filePath) {
+            list.push(filePath)
+        }
+    }
+    SETTINGS.setList("RecentUnits", list)
+}
+
+function loadRecentUnits() {
+    var list = SETTINGS.list("RecentUnits")
+    var model = mainMenu.recentUnitsModel
+    for (var i = 0; i < list.length; i++) {
+        var filePath = list[i]
+        if (UTILS.isFileExists(filePath)) {
+            model.append({ filePath: filePath })
+        }
+    }
+}
