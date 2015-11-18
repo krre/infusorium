@@ -22,10 +22,8 @@ WindowDialog {
         id: process
         onMessage: {
             textArea.append(message)
-            if (message === "AI unit created successfully\n") {
-                if (openAfterCreating && UTILS.isFileExists(unitPath)) {
-                    Files.openUnit(unitPath)
-                }
+            if (openAfterCreating && message.lastIndexOf("created successfully") > 0) {
+                Files.openUnit(unitPath)
             }
         }
     }
