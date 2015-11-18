@@ -2,6 +2,7 @@ import QtQuick 2.5
 import QtQuick.Controls 1.4
 import "../../js/utils.js" as Utils
 import "../../js/dialog.js" as Dialog
+import "../../js/files.js" as Files
 
 MenuBar {
     property alias recentUnitsModel: recentUnitsModel
@@ -22,7 +23,7 @@ MenuBar {
                 var fileDialog = Dialog.selectFile(mainRoot, { nameFilters: [ qsTr("Infusoria Files (*.infu)"), qsTr("All files (*)") ],
                     folder: UTILS.pathToUrl(SETTINGS.value("Infusoria", "workspace", UTILS.homePath))})
                 fileDialog.accepted.connect(function() {
-                    Utils.openUnit(UTILS.urlToPath(fileDialog.fileUrl))
+                    Files.openUnit(UTILS.urlToPath(fileDialog.fileUrl))
                 })
             }
         }

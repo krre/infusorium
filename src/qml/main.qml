@@ -6,6 +6,7 @@ import "../js/utils.js" as Utils
 import "../js/settings.js" as Settings
 
 ApplicationWindow {
+    property var currentTab: tabView.count > 0 ? tabView.getTab(tabView.currentIndex).item : null
     id: mainRoot
     title: APP.name
     width: 800
