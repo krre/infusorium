@@ -16,11 +16,17 @@ Window {
     minimumHeight: 200
     visible: true
     modality: Qt.ApplicationModal
+    color: sysPalette.window
 
     signal accepted
     signal rejected
 
     onVisibleChanged: if (!visible) root.destroy()
+
+    SystemPalette {
+        id: sysPalette
+        colorGroup: SystemPalette.Active
+    }
 
     ColumnLayout {
         anchors.fill: parent
