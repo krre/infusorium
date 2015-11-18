@@ -23,8 +23,13 @@ function geometryLoad() {
         width = geometry.width
         height = geometry.height
     } else {
-        x = (Screen.width - width) / 2
-        y = (Screen.height - height) / 2
+        if (Screen.width && Screen.height) {
+            x = (Screen.width - width) / 2
+            y = (Screen.height - height) / 2
+        } else {
+            x = 200
+            y = 200
+        }
     }
 }
 
