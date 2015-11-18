@@ -59,11 +59,11 @@ QStringList Settings::list(const QString& group)
 {
     settings->beginGroup(group);
         QStringList keys = settings->allKeys();
-        QStringList values;
+        QStringList list;
         for (int i = 0; i < keys.count(); i++) {
-            values.append(settings->value(keys.at(i)).toString());
+            list.append(settings->value(keys.at(i)).toString());
         }
     settings->endGroup();
 
-    return values;
+    return list;
 }
