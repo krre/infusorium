@@ -7,6 +7,7 @@ class Process: public QProcess
 public:
     Process();
     Q_INVOKABLE void run(const QString& program, const QStringList& arguments);
+    Q_INVOKABLE void shutdown() { close(); }
 
 signals:
     void message(const QString& message);
