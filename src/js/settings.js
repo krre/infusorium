@@ -1,14 +1,14 @@
 function save() {
-    geometrySave()
+    saveGeometry()
     saveRecentUnits()
 }
 
 function load() {
-    geometryLoad()
+    loadGeometry()
     loadRecentUnits()
 }
 
-function geometrySave() {
+function saveGeometry() {
     SETTINGS.setMap("MainWindow", {
         x: x,
         y: y,
@@ -17,7 +17,7 @@ function geometrySave() {
     })
 }
 
-function geometryLoad() {
+function loadGeometry() {
     var geometry = SETTINGS.map("MainWindow")
     if (Object.keys(geometry).length) {
         x = geometry.x
