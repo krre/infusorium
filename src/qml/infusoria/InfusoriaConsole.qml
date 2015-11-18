@@ -4,6 +4,7 @@ import QtQuick.Layouts 1.2
 import QtQuick.Dialogs 1.2
 import Aquarium 1.0
 import "../components"
+import "../../js/files.js" as Files
 
 WindowDialog {
     property string unitPath
@@ -15,14 +16,18 @@ WindowDialog {
 
     Component.onCompleted: {
         process.run(SETTINGS.value("Infusoria", "executable"), [unitPath, "-n"])
-        if (openAfterCreating) {
-            print(unitPath)
-        }
     }
 
     Process {
         id: process
-        onMessage: textArea.append(message)
+        onMessage: {
+            textArea.append(message)
+            if (message === "AI unit created successfully\n") {
+                if (openAfterCreating && UTILS.isFileExists(unitPath)) {
+                    Files.openUnit(unitPath)
+                }
+            }
+        }
     }
 
     TextArea {
@@ -30,4 +35,3 @@ WindowDialog {
         anchors.fill: parent
     }
 }
-
