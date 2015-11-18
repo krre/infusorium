@@ -43,3 +43,27 @@ QVariantMap Settings::map(const QString& group)
     settings->endGroup();
     return map;
 }
+
+void Settings::setList(const QString& group, const QStringList& list)
+{
+    settings->remove(group);
+
+    settings->beginGroup(group);
+        for (int i = 0; i < list.count(); i++) {
+            settings->setValue(QString::number(i), list.at(i));
+        }
+        settings->endGroup();
+}
+
+QStringList Settings::list(const QString& group)
+{
+    settings->beginGroup(group);
+        QStringList keys = settings->allKeys();
+        QStringList values;
+        for (int i = 0; i < keys.count(); i++) {
+            values.append(settings->value(keys.at(i)).toString());
+        }
+    settings->endGroup();
+
+    return values;
+}
