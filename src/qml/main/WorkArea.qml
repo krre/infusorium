@@ -6,6 +6,7 @@ Item {
     id: root
     property bool isCurrentTab: mainRoot.currentTab === root
     property string filePath
+    property int unitPort
 
     Component.onCompleted: {
         process.run(SETTINGS.value("Infusoria", "executable"), [filePath])
@@ -15,5 +16,12 @@ Item {
 
     Process {
         id: process
+        onMessage: {
+            var posPortString = message.lastIndexOf("Port")
+            if (posPortString > 0) {
+                unitPort = parseInt(message.substr(posPortString + 5, 5))
+                print(unitPort)
+            }
+        }
     }
 }
