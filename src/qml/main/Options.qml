@@ -34,7 +34,10 @@ WindowDialog {
                 TextField {
                     id: executablePath
                     Layout.fillWidth: true
-                    text: SETTINGS.value("Infusoria", "executable")
+                    text: {
+                        var value = SETTINGS.value("Infusoria", "executable")
+                        return value ? value : ""
+                    }
                 }
 
                 BrowseButton {
