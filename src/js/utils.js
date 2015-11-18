@@ -7,3 +7,7 @@ function createDynamicObject(parent, url, properties) {
         return component.createObject(parent, properties ? properties : {})
     }
 }
+
+function openUnit(filePath) {
+    print(filePath)
+}
