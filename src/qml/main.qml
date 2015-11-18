@@ -13,7 +13,7 @@ ApplicationWindow {
     height: 600
     visible: true
 
-    menuBar: MainMenu {}
+    menuBar: MainMenu { id: mainMenu }
 
     Component.onCompleted: Settings.load()
 
