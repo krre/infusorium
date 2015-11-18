@@ -38,6 +38,7 @@ MenuBar {
 
                 MenuItem {
                     text: model.filePath
+                    onTriggered: Files.openUnit(text)
                 }
 
                 onObjectAdded: recentUnitsMenu.insertItem(index, object)
