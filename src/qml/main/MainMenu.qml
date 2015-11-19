@@ -5,15 +5,15 @@ import "../../js/dialog.js" as Dialog
 import "../../js/files.js" as Files
 
 MenuBar {
-    property alias recentUnitsModel: recentUnitsModel
+    property alias recentFilesModel: recentFilesModel
 
     Menu {
-        title: qsTr("Unit")
+        title: qsTr("File")
 
         MenuItem {
             text: qsTr("New...")
             shortcut: "Ctrl+N"
-            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/unit/NewUnit.qml")
+            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/infusoria/NewInfusoria.qml")
         }
 
         MenuItem {
@@ -23,39 +23,39 @@ MenuBar {
                 var fileDialog = Dialog.selectFile(mainRoot, { nameFilters: [ qsTr("Infusoria Files (*.infu)"), qsTr("All files (*)") ],
                     folder: UTILS.pathToUrl(SETTINGS.value("Infusoria", "workspace", UTILS.homePath))})
                 fileDialog.accepted.connect(function() {
-                    Files.openUnit(UTILS.urlToPath(fileDialog.fileUrl))
+                    Files.openFile(UTILS.urlToPath(fileDialog.fileUrl))
                 })
             }
         }
 
         Menu {
-            id: recentUnitsMenu
-            title: qsTr("Recent Units")
-            enabled: recentUnitsModel.count > 0
+            id: recentFilesMenu
+            title: qsTr("Recent Files")
+            enabled: recentFilesModel.count > 0
 
             Instantiator {
-                model: recentUnitsModel
+                model: recentFilesModel
 
                 MenuItem {
                     text: model.filePath
-                    onTriggered: Files.openUnit(text)
+                    onTriggered: Files.openFile(text)
                 }
 
-                onObjectAdded: recentUnitsMenu.insertItem(index, object)
-                onObjectRemoved: recentUnitsMenu.removeItem(object)
+                onObjectAdded: recentFilesMenu.insertItem(index, object)
+                onObjectRemoved: recentFilesMenu.removeItem(object)
             }
 
             MenuSeparator {
-                visible: recentUnitsModel.count > 0
+                visible: recentFilesModel.count > 0
             }
 
             MenuItem {
                 text: qsTr("Clear Menu")
-                onTriggered: recentUnitsModel.clear()
+                onTriggered: recentFilesModel.clear()
             }
 
             ListModel {
-                id: recentUnitsModel
+                id: recentFilesModel
             }
         }
 

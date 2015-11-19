@@ -17,7 +17,7 @@ Item {
     Process {
         id: process
         onMessage: {
-            print(message)
+            print("Process:", message)
             var posPortString = message.lastIndexOf("Port")
             if (posPortString > 0) {
                 var port = message.substr(posPortString + 5, 5)

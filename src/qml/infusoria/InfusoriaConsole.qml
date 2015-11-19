@@ -7,7 +7,7 @@ import "../components"
 import "../../js/files.js" as Files
 
 WindowDialog {
-    property string unitPath
+    property string filePath
     property bool openAfterCreating: false
     title: qsTr("Infusoria Console")
     width: 600
@@ -15,7 +15,7 @@ WindowDialog {
     standardButtons: StandardButton.Close
 
     Component.onCompleted: {
-        process.run(SETTINGS.value("Infusoria", "executable"), [unitPath, "-n"])
+        process.run(SETTINGS.value("Infusoria", "executable"), [filePath, "-n"])
     }
 
     Process {
@@ -23,7 +23,7 @@ WindowDialog {
         onMessage: {
             textArea.append(message)
             if (openAfterCreating && message.lastIndexOf("created successfully") > 0) {
-                Files.openUnit(unitPath)
+                Files.openFile(filePath)
             }
         }
     }

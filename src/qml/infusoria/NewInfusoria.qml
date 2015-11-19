@@ -7,7 +7,7 @@ import "../../js/utils.js" as Utils
 
 WindowDialog {
     id: root
-    title: qsTr("New Unit")
+    title: qsTr("New Infusoria File")
     width: 400
     height: 100
 
@@ -16,8 +16,8 @@ WindowDialog {
             stayOnScreen = true
             Dialog.errorMessage(qsTr("Name is empty"))
         } else {
-            var unitPath = directory.text + "/" + name.text + ".infu"
-            createObjInMainContext("qrc:/qml/infusoria/InfusoriaConsole.qml", { unitPath: unitPath, openAfterCreating: openAfterCreating.checked })
+            var filePath = directory.text + "/" + name.text + ".infu"
+            createObjInMainContext("qrc:/qml/infusoria/InfusoriaConsole.qml", { filePath: filePath, openAfterCreating: openAfterCreating.checked })
         }
     }
 

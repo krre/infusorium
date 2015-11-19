@@ -1,11 +1,11 @@
 function save() {
     saveGeometry()
-    saveRecentUnits()
+    saveRecentFiles()
 }
 
 function load() {
     loadGeometry()
-    loadRecentUnits()
+    loadRecentFiles()
 }
 
 function saveGeometry() {
@@ -35,8 +35,8 @@ function loadGeometry() {
     }
 }
 
-function saveRecentUnits() {
-    var model = mainMenu.recentUnitsModel
+function saveRecentFiles() {
+    var model = mainMenu.recentFilesModel
     var list = []
     for (var i = 0; i < model.count; i++) {
         var filePath = model.get(i).filePath
@@ -44,12 +44,12 @@ function saveRecentUnits() {
             list.push(filePath)
         }
     }
-    SETTINGS.setList("RecentUnits", list)
+    SETTINGS.setList("RecentFiles", list)
 }
 
-function loadRecentUnits() {
-    var list = SETTINGS.list("RecentUnits")
-    var model = mainMenu.recentUnitsModel
+function loadRecentFiles() {
+    var list = SETTINGS.list("RecentFiles")
+    var model = mainMenu.recentFilesModel
     for (var i = 0; i < list.length; i++) {
         var filePath = list[i]
         if (UTILS.isFileExists(filePath)) {
