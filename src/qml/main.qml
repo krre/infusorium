@@ -1,5 +1,6 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
+import QtQuick.Layouts 1.1
 import QtQuick.Window 2.2
 import "main"
 import "../js/utils.js" as Utils
@@ -25,9 +26,46 @@ ApplicationWindow {
         Settings.save()
     }
 
-    TabView {
-        id: tabView
+    SplitView {
         anchors.fill: parent
-        frameVisible: false
+
+        TabView {
+            id: tabView
+            Layout.fillWidth: true
+            frameVisible: false
+        }
+
+        ColumnLayout {
+            width: 150
+            Layout.minimumWidth: 50
+            spacing: 0
+
+            TableView {
+                id: infuTableView
+                Layout.preferredWidth: parent.width
+                Layout.fillHeight: true
+
+                TableViewColumn {
+                    title: qsTr("Infusoria")
+                }
+            }
+
+            RowLayout {
+                Layout.preferredWidth: parent.width
+                Layout.margins: 5
+
+                Button {
+                    Layout.fillWidth: true
+                    text: qsTr("Attach")
+                    enabled: infuTableView.currentRow >= 0
+                }
+
+                Button {
+                    Layout.fillWidth: true
+                    text: qsTr("Terminate")
+                    enabled: infuTableView.currentRow >= 0
+                }
+            }
+        }
     }
 }
