@@ -1,11 +1,13 @@
 function save() {
     saveGeometry()
     saveRecentFiles()
+    SETTINGS.setValue("InfuTable", "visible", infuTableContainer.visible)
 }
 
 function load() {
     loadGeometry()
     loadRecentFiles()
+    infuTableContainer.visible = SETTINGS.value("InfuTable", "visible", true) === "true"
 }
 
 function saveGeometry() {
