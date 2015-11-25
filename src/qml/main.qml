@@ -36,6 +36,7 @@ ApplicationWindow {
         }
 
         ColumnLayout {
+            id: infuTableContainer
             width: 150
             Layout.minimumWidth: 50
             spacing: 0

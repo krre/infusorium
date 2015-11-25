@@ -113,6 +113,17 @@ MenuBar {
     }
 
     Menu {
+        title: qsTr("Window")
+
+        MenuItem {
+            text: qsTr("Show Infusoria Table")
+            checkable: true
+            checked: infuTableContainer.visible
+            onCheckedChanged: infuTableContainer.visible = checked
+        }
+    }
+
+    Menu {
         title: qsTr("Help")
 
         MenuItem {
