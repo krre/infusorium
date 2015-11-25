@@ -44,6 +44,7 @@ ApplicationWindow {
                 id: infuTableView
                 Layout.preferredWidth: parent.width
                 Layout.fillHeight: true
+                frameVisible: false
 
                 TableViewColumn {
                     title: qsTr("Infusoria")
