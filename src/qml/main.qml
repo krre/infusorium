@@ -2,6 +2,8 @@ import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.1
 import QtQuick.Window 2.2
+import QtWebSockets 1.0
+import Aquarium 1.0
 import "main"
 import "../js/utils.js" as Utils
 import "../js/settings.js" as Settings
@@ -24,6 +26,16 @@ ApplicationWindow {
 
     onClosing: {
         Settings.save()
+    }
+
+    Net {
+        id: net
+    }
+
+    WebSocketServer {
+        id: webSocketServer
+        listen: true
+        onPortChanged: net.setPort(port)
     }
 
     SplitView {

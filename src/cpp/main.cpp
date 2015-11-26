@@ -4,6 +4,7 @@
 #include "global/app.h"
 #include "global/settings.h"
 #include "global/utils.h"
+#include "net/net.h"
 #include "process.h"
 
 int main(int argc, char* argv[])
@@ -13,6 +14,7 @@ int main(int argc, char* argv[])
     appication.setApplicationVersion(App::version());
 
     qmlRegisterType<Process>("Aquarium", 1, 0, "Process");
+    qmlRegisterType<Net>("Aquarium", 1, 0, "Net");
 
     registerOsgTypes();
 
