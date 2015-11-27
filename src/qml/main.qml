@@ -32,12 +32,6 @@ ApplicationWindow {
         id: net
     }
 
-    WebSocketServer {
-        id: webSocketServer
-        listen: true
-        onPortChanged: net.setPort(port)
-    }
-
     SplitView {
         anchors.fill: parent
 
