@@ -19,18 +19,13 @@ Item {
         id: process
         onMessage: {
             print("Process:", message)
-            var posPortString = message.lastIndexOf("Port")
-            if (posPortString > 0) {
-                var port = message.substr(posPortString + 5, 5)
-                webSocket.url = "ws://localhost:" + port
-                webSocket.active = true
-            }
         }
     }
 
     WebSocket {
         id: webSocket
         active: true
+        url: "ws://localhost:" + SETTINGS.value("Infusoria", "port")
         onStatusChanged: {
             if (status === WebSocket.Connecting) {
                 print("Connecting to url", url)

@@ -12,6 +12,7 @@ WindowDialog {
 
     onAccepted: {
         SETTINGS.setValue("Infusoria", "executable", executablePath.text)
+        SETTINGS.setValue("Infusoria", "port", port.text)
         SETTINGS.setValue("Infusoria", "workspace", workspacePath.text)
     }
 
@@ -19,7 +20,7 @@ WindowDialog {
         width: parent.width
 
         GroupBox {
-            title: "Infusoria"
+            title: "Infusoria Manager"
             Layout.preferredWidth: parent.width
             Layout.alignment: Qt.AlignHCenter
 
@@ -46,6 +47,20 @@ WindowDialog {
                         selectFileDialog.accepted.connect(function() {
                             executablePath.text = UTILS.urlToPath(selectFileDialog.fileUrl)
                         })
+                    }
+                }
+
+                Label {
+                    text: qsTr("Port:")
+                }
+
+                TextField {
+                    id: port
+                    Layout.fillWidth: true
+                    Layout.columnSpan: 2
+                    text: {
+                        var value = SETTINGS.value("Infusoria", "port")
+                        return value ? value : ""
                     }
                 }
 
