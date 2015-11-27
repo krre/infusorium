@@ -36,7 +36,8 @@ DISTFILES += \
     src/qml/components/messagedialog/MessageDialogWarning.qml \
     src/qml/main/WorkArea.qml \
     src/js/files.js \
-    src/qml/infusoria/NewInfusoria.qml
+    src/qml/infusoria/NewInfusoria.qml \
+    README.md
 
 HEADERS += \
     src/cpp/global/app.h \
