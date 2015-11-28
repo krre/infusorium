@@ -70,7 +70,7 @@ ApplicationWindow {
 
                 Button {
                     Layout.fillWidth: true
-                    text: qsTr("Terminate")
+                    text: qsTr("Detach")
                     enabled: infuTableView.currentRow >= 0
                 }
             }
