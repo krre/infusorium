@@ -11,12 +11,6 @@ MenuBar {
         title: qsTr("File")
 
         MenuItem {
-            text: qsTr("New...")
-            shortcut: "Ctrl+N"
-            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/infusoria/NewInfusoria.qml")
-        }
-
-        MenuItem {
             text: qsTr("Open...")
             shortcut: "Ctrl+O"
             onTriggered: {
