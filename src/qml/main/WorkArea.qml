@@ -9,60 +9,11 @@ Item {
     property bool isCurrentTab: mainRoot.currentTab === root
     property string filePath
 
-    Component.onCompleted: {
-        process.run(SETTINGS.value("Infusoria", "executable"), [filePath])
-    }
-
-    Component.onDestruction: process.shutdown()
-
-    Process {
-        id: process
-        onMessage: {
-            print("Process:", message)
-        }
-    }
-
-    WebSocket {
-        id: webSocket
-        active: true
-        url: "ws://localhost:" + SETTINGS.value("Infusoria", "port")
-        onStatusChanged: {
-            if (status === WebSocket.Connecting) {
-                print("Connecting to url", url)
-            } else if (status === WebSocket.Open) {
-                print("Open connection")
-            } else if (status === webSocket.Closed) {
-                print("Closed connection")
-            } else if (status === WebSocket.Error) {
-                print("Error:", webSocket.errorString)
-            }
-        }
-        onTextMessageReceived: print("Infusoria:", message)
-    }
-
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: 7
 
-        RowLayout {
-            Layout.fillWidth: true
-
-            TextField {
-                id: sendTextField
-                Layout.fillWidth: true
-                Component.onCompleted: forceActiveFocus()
-            }
-
-            Button {
-                text: "Send"
-                onClicked: {
-                    webSocket.sendTextMessage(sendTextField.text)
-                    sendTextField.text = ""
-                }
-            }
-        }
-
-        Item {
+        Rectangle {
             Layout.fillWidth: true
             Layout.fillHeight: true
         }

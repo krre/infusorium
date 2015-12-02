@@ -32,6 +32,24 @@ ApplicationWindow {
         id: net
     }
 
+    WebSocket {
+        id: webSocket
+        active: true
+        url: "ws://localhost:" + SETTINGS.value("Infusoria", "port")
+        onStatusChanged: {
+            if (status === WebSocket.Connecting) {
+                print("Connecting to url", url)
+            } else if (status === WebSocket.Open) {
+                print("Open connection")
+            } else if (status === webSocket.Closed) {
+                print("Closed connection")
+            } else if (status === WebSocket.Error) {
+                print("Error:", webSocket.errorString)
+            }
+        }
+        onTextMessageReceived: print("Infusoria:", message)
+    }
+
     SplitView {
         anchors.fill: parent
 
