@@ -10,6 +10,7 @@ import "../js/settings.js" as Settings
 
 ApplicationWindow {
     property var currentTab: tabView.count > 0 ? tabView.getTab(tabView.currentIndex).item : null
+    property alias webSocket: webSocket
     id: mainRoot
     title: APP.name
     width: 800
@@ -34,8 +35,7 @@ ApplicationWindow {
 
     WebSocket {
         id: webSocket
-        active: true
-        url: "ws://localhost:" + SETTINGS.value("Infusoria", "port")
+        url: String("ws://%1:%2").arg(SETTINGS.value("Infusoria", "address", "localhost")).arg(SETTINGS.value("Infusoria", "port", "51000"))
         onStatusChanged: {
             if (status === WebSocket.Connecting) {
                 print("Connecting to url", url)

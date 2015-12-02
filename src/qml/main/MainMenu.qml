@@ -8,17 +8,17 @@ MenuBar {
     property alias recentFilesModel: recentFilesModel
 
     Menu {
-        title: qsTr("File")
+        title: qsTr("Infusoria")
 
         MenuItem {
-            text: qsTr("Open...")
-            shortcut: "Ctrl+O"
+            text: qsTr("Connect to IM")
+            onTriggered: mainRoot.webSocket.active = true
+        }
+
+        MenuItem {
+            text: qsTr("Disconnect from IM")
             onTriggered: {
-                var fileDialog = Dialog.selectFile(mainRoot, { nameFilters: [ qsTr("Infusoria Files (*.infu)"), qsTr("All files (*)") ],
-                    folder: UTILS.pathToUrl(SETTINGS.value("Infusoria", "workspace", UTILS.homePath))})
-                fileDialog.accepted.connect(function() {
-                    Files.openFile(UTILS.urlToPath(fileDialog.fileUrl))
-                })
+                mainRoot.webSocket.active = false
             }
         }
 
