@@ -7,13 +7,12 @@ import "../../js/dialog.js" as Dialog
 WindowDialog {
     id: root
     title: qsTr("Options")
-    width: 500
+    width: 400
     height: 200
 
     onAccepted: {
-        SETTINGS.setValue("Infusoria", "executable", executablePath.text)
+        SETTINGS.setValue("Infusoria", "address", address.text)
         SETTINGS.setValue("Infusoria", "port", port.text)
-        SETTINGS.setValue("Infusoria", "workspace", workspacePath.text)
     }
 
     ColumnLayout {
@@ -26,28 +25,16 @@ WindowDialog {
 
             GridLayout {
                 width: parent.width
-                columns: 3
+                columns: 2
 
                 Label {
-                    text: qsTr("Executable:")
+                    text: qsTr("Address:")
                 }
 
                 TextField {
-                    id: executablePath
+                    id: address
                     Layout.fillWidth: true
-                    text: {
-                        var value = SETTINGS.value("Infusoria", "executable")
-                        return value ? value : ""
-                    }
-                }
-
-                BrowseButton {
-                    onClicked: {
-                        var selectFileDialog = Dialog.selectFile(root)
-                        selectFileDialog.accepted.connect(function() {
-                            executablePath.text = UTILS.urlToPath(selectFileDialog.fileUrl)
-                        })
-                    }
+                    text: SETTINGS.value("Infusoria", "address", "localhost")
                 }
 
                 Label {
@@ -57,30 +44,7 @@ WindowDialog {
                 TextField {
                     id: port
                     Layout.fillWidth: true
-                    Layout.columnSpan: 2
-                    text: {
-                        var value = SETTINGS.value("Infusoria", "port")
-                        return value ? value : ""
-                    }
-                }
-
-                Label {
-                    text: qsTr("Workspace:")
-                }
-
-                TextField {
-                    id: workspacePath
-                    Layout.fillWidth: true
-                    text: SETTINGS.value("Infusoria", "workspace", UTILS.homePath)
-                }
-
-                BrowseButton {
-                    onClicked: {
-                        var selectDirectoryDialog = Dialog.selectDirectory(root)
-                        selectDirectoryDialog.accepted.connect(function() {
-                            workspacePath.text = UTILS.urlToPath(selectDirectoryDialog.fileUrl)
-                        })
-                    }
+                    text: SETTINGS.value("Infusoria", "port", "51000")
                 }
             }
         }
