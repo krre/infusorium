@@ -1,9 +1,9 @@
 #include <QApplication>
 #include <QtQml>
 #include <registerosgtypes.h>
-#include "global/app.h"
-#include "global/settings.h"
-#include "global/utils.h"
+#include <app.h>
+#include <settings.h>
+#include <utils.h>
 #include "net/net.h"
 #include "process.h"
 

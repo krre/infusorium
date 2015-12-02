@@ -4,11 +4,10 @@ CONFIG += c++11
 TEMPLATE = app
 
 include(../qosg/src/qosg.pri)
+include(../infusoria/src/common/common.pri)
 
 SOURCES += \
     src/cpp/main.cpp \
-    src/cpp/global/settings.cpp \
-    src/cpp/global/utils.cpp \
     src/cpp/process.cpp \
     src/cpp/net/net.cpp
 
@@ -38,8 +37,5 @@ DISTFILES += \
     README.md
 
 HEADERS += \
-    src/cpp/global/app.h \
-    src/cpp/global/settings.h \
-    src/cpp/global/utils.h \
     src/cpp/process.h \
     src/cpp/net/net.h
