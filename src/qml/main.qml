@@ -35,7 +35,7 @@ ApplicationWindow {
 
     WebSocket {
         id: webSocket
-        url: String("ws://%1:%2").arg(SETTINGS.value("Infusoria", "address", "localhost")).arg(SETTINGS.value("Infusoria", "port", "51000"))
+        url: String("ws://%1:%2").arg(SETTINGS.value("Infusoria", "address")).arg(SETTINGS.value("Infusoria", "port"))
         onStatusChanged: {
             if (status === WebSocket.Connecting) {
                 print("Connecting to url", url)

@@ -34,7 +34,7 @@ WindowDialog {
                 TextField {
                     id: address
                     Layout.fillWidth: true
-                    text: SETTINGS.value("Infusoria", "address", "localhost")
+                    text: SETTINGS.value("Infusoria", "address")
                 }
 
                 Label {
@@ -44,7 +44,7 @@ WindowDialog {
                 TextField {
                     id: port
                     Layout.fillWidth: true
-                    text: SETTINGS.value("Infusoria", "port", "51000")
+                    text: SETTINGS.value("Infusoria", "port")
                 }
             }
         }

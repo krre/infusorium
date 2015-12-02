@@ -19,8 +19,13 @@ int main(int argc, char* argv[])
     registerOsgTypes();
 
     App app;
-    Settings settings;
     Utils utils;
+    QString filePath = qApp->applicationDirPath() + "/aquarium.ini";
+    Settings settings(filePath);
+    if (!QFile::exists(filePath)) {
+        settings.setValue("Infusoria", "address", "localhost");
+        settings.setValue("Infusoria", "port", "51000");
+    }
 
     QQmlApplicationEngine engine;
 
