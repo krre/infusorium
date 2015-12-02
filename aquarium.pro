@@ -6,6 +6,12 @@ TEMPLATE = app
 include(../qosg/src/qosg.pri)
 include(../infusoria/src/common/common.pri)
 
+DEFINES += \
+    "MAJOR=0" \
+    "MINOR=1" \
+    "PATCH=0" \
+    "NAME=\\\"Aquarium\\\""
+
 SOURCES += \
     src/cpp/main.cpp \
     src/cpp/process.cpp \
