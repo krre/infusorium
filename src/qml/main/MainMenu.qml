@@ -83,6 +83,11 @@ MenuBar {
             checked: infuTableContainer.visible
             onCheckedChanged: infuTableContainer.visible = checked
         }
+
+        MenuItem {
+            text: qsTr("Show Logger")
+            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/main/Logger.qml")
+        }
     }
 
     Menu {

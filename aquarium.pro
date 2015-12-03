@@ -41,7 +41,8 @@ DISTFILES += \
     src/qml/main/WorkArea.qml \
     src/js/files.js \
     README.md \
-    src/qml/main/Connect.qml
+    src/qml/main/Connect.qml \
+    src/qml/main/Logger.qml
 
 HEADERS += \
     src/cpp/process.h \
