@@ -64,6 +64,7 @@ WindowDialog {
             Layout.fillWidth: true
             Layout.fillHeight: true
             Layout.columnSpan: 2
+            readOnly: true
 
             function appendWithTime(text) {
                 var currentdate = new Date();
