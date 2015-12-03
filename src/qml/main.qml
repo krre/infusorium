@@ -55,7 +55,23 @@ ApplicationWindow {
                 print("Error:", webSocket.errorString)
             }
         }
-        onTextMessageReceived: print("Infusoria:", message)
+        onTextMessageReceived: {
+            print("Infusoria:", message)
+            var obj = JSON.parse(message)
+            if (obj) {
+                if (obj.id && obj.id === "aquarium") {
+                    if (obj.result) {
+                        for (var i in obj.result) {
+                            infuModel.append({ path: obj.result[i] })
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    ListModel {
+        id: infuModel
     }
 
     SplitView {
@@ -78,9 +94,11 @@ ApplicationWindow {
                 Layout.preferredWidth: parent.width
                 Layout.fillHeight: true
                 frameVisible: false
+                model: infuModel
 
                 TableViewColumn {
                     title: qsTr("Infusoria")
+                    role: "path"
                 }
             }
 
