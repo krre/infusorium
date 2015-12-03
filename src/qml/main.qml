@@ -40,21 +40,16 @@ ApplicationWindow {
     WebSocket {
         id: webSocket
         url: String("ws://%1:%2").arg(SETTINGS.value("Infusoria", "address")).arg(SETTINGS.value("Infusoria", "port"))
+
         onStatusChanged: {
-            if (status === WebSocket.Connecting) {
-                print("Connecting to url", url)
-            } else if (status === WebSocket.Open) {
-                print("Open connection")
+            if (status === WebSocket.Open) {
                 var message = {}
                 message.method = "onlineList"
                 message.id = "aquarium"
                 sendTextMessage(JSON.stringify(message))
-            } else if (status === WebSocket.Closed) {
-                print("Closed connection")
-            } else if (status === WebSocket.Error) {
-                print("Error:", webSocket.errorString)
             }
         }
+
         onTextMessageReceived: {
             print("Infusoria:", message)
             var obj = JSON.parse(message)

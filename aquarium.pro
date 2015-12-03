@@ -40,7 +40,8 @@ DISTFILES += \
     src/qml/components/messagedialog/MessageDialogWarning.qml \
     src/qml/main/WorkArea.qml \
     src/js/files.js \
-    README.md
+    README.md \
+    src/qml/main/Connect.qml
 
 HEADERS += \
     src/cpp/process.h \

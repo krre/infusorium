@@ -10,8 +10,8 @@ MenuBar {
         title: qsTr("Infusoria")
 
         MenuItem {
-            text: qsTr("Connect to IM")
-            onTriggered: mainRoot.webSocket.active = true
+            text: qsTr("Connect to IM...")
+            onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/main/Connect.qml")
         }
 
         MenuItem {
