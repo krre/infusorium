@@ -16,7 +16,7 @@ MenuBar {
         }
 
         MenuItem {
-            text: qsTr("Disconnect from IM")
+            text: qsTr("Disconnect")
             onTriggered: {
                 mainRoot.webSocket.active = false
             }
