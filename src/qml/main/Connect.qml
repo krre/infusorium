@@ -20,16 +20,16 @@ WindowDialog {
         target: mainRoot.webSocket
         onStatusChanged: {
             if (status === WebSocket.Connecting) {
-                statusTextArea.append(qsTr("Connecting to ") + mainRoot.webSocket.url)
+                statusTextArea.appendWithTime(qsTr("Connecting to ") + mainRoot.webSocket.url)
             } else if (status === WebSocket.Open) {
-                statusTextArea.append(qsTr("Open"))
+                statusTextArea.appendWithTime(qsTr("Open"))
                 root.destroy()
             } else if (status === WebSocket.Closing) {
-                statusTextArea.append(qsTr("Closing"))
+                statusTextArea.appendWithTime(qsTr("Closing"))
             } else if (status === WebSocket.Closed) {
-                statusTextArea.append(qsTr("Closed"))
+                statusTextArea.appendWithTime(qsTr("Closed"))
             } else if (status === WebSocket.Error) {
-                statusTextArea.append(qsTr("Error: ") + mainRoot.webSocket.errorString)
+                statusTextArea.appendWithTime(qsTr("Error: ") + mainRoot.webSocket.errorString)
                 mainRoot.webSocket.active = false
             }
         }
@@ -64,6 +64,14 @@ WindowDialog {
             Layout.fillWidth: true
             Layout.fillHeight: true
             Layout.columnSpan: 2
+
+            function appendWithTime(text) {
+                var currentdate = new Date();
+                var time = ((currentdate.getHours() < 10) ? "0" : "") + currentdate.getHours() + ":" +
+                        ((currentdate.getMinutes() < 10) ? "0" : "") + currentdate.getMinutes() + ":" +
+                        ((currentdate.getSeconds() < 10) ? "0" : "") + currentdate.getSeconds()
+                append(time + ": " + text)
+            }
         }
     }
 }
