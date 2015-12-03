@@ -1,12 +1,10 @@
 function save() {
     saveGeometry()
-    saveRecentFiles()
     SETTINGS.setValue("InfuTable", "visible", infuTableContainer.visible)
 }
 
 function load() {
     loadGeometry()
-    loadRecentFiles()
     infuTableContainer.visible = SETTINGS.value("InfuTable", "visible", true) === "true"
 }
 
@@ -37,25 +35,3 @@ function loadGeometry() {
     }
 }
 
-function saveRecentFiles() {
-    var model = mainMenu.recentFilesModel
-    var list = []
-    for (var i = 0; i < model.count; i++) {
-        var filePath = model.get(i).filePath
-        if (filePath) {
-            list.push(filePath)
-        }
-    }
-    SETTINGS.setList("RecentFiles", list)
-}
-
-function loadRecentFiles() {
-    var list = SETTINGS.list("RecentFiles")
-    var model = mainMenu.recentFilesModel
-    for (var i = 0; i < list.length; i++) {
-        var filePath = list[i]
-        if (UTILS.isFileExists(filePath)) {
-            model.append({ filePath: filePath })
-        }
-    }
-}

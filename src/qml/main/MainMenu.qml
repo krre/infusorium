@@ -5,7 +5,6 @@ import "../../js/dialog.js" as Dialog
 import "../../js/files.js" as Files
 
 MenuBar {
-    property alias recentFilesModel: recentFilesModel
 
     Menu {
         title: qsTr("Infusoria")
@@ -19,37 +18,6 @@ MenuBar {
             text: qsTr("Disconnect")
             onTriggered: {
                 mainRoot.webSocket.active = false
-            }
-        }
-
-        Menu {
-            id: recentFilesMenu
-            title: qsTr("Recent Files")
-            enabled: recentFilesModel.count > 0
-
-            Instantiator {
-                model: recentFilesModel
-
-                MenuItem {
-                    text: model.filePath
-                    onTriggered: Files.openFile(text)
-                }
-
-                onObjectAdded: recentFilesMenu.insertItem(index, object)
-                onObjectRemoved: recentFilesMenu.removeItem(object)
-            }
-
-            MenuSeparator {
-                visible: recentFilesModel.count > 0
-            }
-
-            MenuItem {
-                text: qsTr("Clear Menu")
-                onTriggered: recentFilesModel.clear()
-            }
-
-            ListModel {
-                id: recentFilesModel
             }
         }
 
