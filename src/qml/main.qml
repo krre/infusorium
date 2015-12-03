@@ -16,8 +16,12 @@ ApplicationWindow {
     width: 800
     height: 600
     visible: true
-
     menuBar: MainMenu { id: mainMenu }
+    statusBar: StatusBar {
+        Label {
+            text: webSocket.status === WebSocket.Open ? qsTr("Connected to " + webSocket.url) : qsTr("Disconnected")
+        }
+    }
 
     Component.onCompleted: Settings.load()
 
@@ -45,7 +49,7 @@ ApplicationWindow {
                 message.method = "onlineList"
                 message.id = "aquarium"
                 sendTextMessage(JSON.stringify(message))
-            } else if (status === webSocket.Closed) {
+            } else if (status === WebSocket.Closed) {
                 print("Closed connection")
             } else if (status === WebSocket.Error) {
                 print("Error:", webSocket.errorString)
