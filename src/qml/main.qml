@@ -41,6 +41,10 @@ ApplicationWindow {
                 print("Connecting to url", url)
             } else if (status === WebSocket.Open) {
                 print("Open connection")
+                var message = {}
+                message.method = "onlineList"
+                message.id = "aquarium"
+                sendTextMessage(JSON.stringify(message))
             } else if (status === webSocket.Closed) {
                 print("Closed connection")
             } else if (status === WebSocket.Error) {
