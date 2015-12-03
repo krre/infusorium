@@ -62,7 +62,8 @@ ApplicationWindow {
                 if (obj.id && obj.id === "aquarium") {
                     if (obj.result) {
                         for (var i in obj.result) {
-                            infuModel.append({ path: obj.result[i] })
+                            var path = obj.result[i]
+                            infuModel.append({ name: UTILS.pathToBaseName(path) })
                         }
                     }
                 }
@@ -98,7 +99,7 @@ ApplicationWindow {
 
                 TableViewColumn {
                     title: qsTr("Infusoria")
-                    role: "path"
+                    role: "name"
                 }
             }
 
