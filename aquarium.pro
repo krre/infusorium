@@ -42,7 +42,8 @@ DISTFILES += \
     src/js/files.js \
     README.md \
     src/qml/main/Connect.qml \
-    src/qml/main/Logger.qml
+    src/qml/main/Logger.qml \
+    src/js/infu-rpc.js
 
 HEADERS += \
     src/cpp/process.h \

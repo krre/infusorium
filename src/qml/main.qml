@@ -7,6 +7,7 @@ import Aquarium 1.0
 import "main"
 import "../js/utils.js" as Utils
 import "../js/settings.js" as Settings
+import "../js/infu-rpc.js" as Rpc
 
 ApplicationWindow {
     property var currentTab: tabView.count > 0 ? tabView.getTab(tabView.currentIndex).item : null
@@ -43,27 +44,11 @@ ApplicationWindow {
 
         onStatusChanged: {
             if (status === WebSocket.Open) {
-                var message = {}
-                message.method = "onlineList"
-                message.id = "aquarium"
-                sendTextMessage(JSON.stringify(message))
+                Rpc.onlineList()
             }
         }
 
-        onTextMessageReceived: {
-            print("Infusoria:", message)
-            var obj = JSON.parse(message)
-            if (obj) {
-                if (obj.id && obj.id === "aquarium") {
-                    if (obj.result) {
-                        for (var i in obj.result) {
-                            var path = obj.result[i]
-                            infuModel.append({ name: UTILS.pathToBaseName(path) })
-                        }
-                    }
-                }
-            }
-        }
+        onTextMessageReceived: Rpc.receive(message)
     }
 
     ListModel {
