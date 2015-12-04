@@ -7,7 +7,7 @@ import Aquarium 1.0
 import "main"
 import "../js/utils.js" as Utils
 import "../js/settings.js" as Settings
-import "../js/infu-rpc.js" as Rpc
+import "../js/infu-proto.js" as InfuProto
 
 ApplicationWindow {
     property var currentTab: tabView.count > 0 ? tabView.getTab(tabView.currentIndex).item : null
@@ -45,11 +45,11 @@ ApplicationWindow {
 
         onStatusChanged: {
             if (status === WebSocket.Open) {
-                Rpc.onlineList()
+                InfuProto.onlineList()
             }
         }
 
-        onTextMessageReceived: Rpc.receive(message)
+        onTextMessageReceived: InfuProto.receive(message)
     }
 
     ListModel {

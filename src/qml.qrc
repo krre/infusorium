@@ -21,6 +21,6 @@
         <file>js/files.js</file>
         <file>qml/main/Connect.qml</file>
         <file>qml/main/Logger.qml</file>
-        <file>js/infu-rpc.js</file>
+        <file>js/infu-proto.js</file>
     </qresource>
 </RCC>

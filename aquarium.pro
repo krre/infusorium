@@ -43,7 +43,7 @@ DISTFILES += \
     README.md \
     src/qml/main/Connect.qml \
     src/qml/main/Logger.qml \
-    src/js/infu-rpc.js
+    src/js/infu-proto.js
 
 HEADERS += \
     src/cpp/process.h \
