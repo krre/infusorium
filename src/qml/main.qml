@@ -92,6 +92,12 @@ ApplicationWindow {
                     Layout.fillWidth: true
                     text: qsTr("Attach")
                     enabled: infuTableView.currentRow >= 0
+                    onClicked: {
+                        var name = infuModel.get(infuTableView.currentRow).name
+                        var tab = tabView.addTab(name)
+                        tab.setSource("qrc:/qml/main/WorkArea.qml", { name: name })
+                        tabView.currentIndex = tabView.count - 1
+                    }
                 }
 
                 Button {
