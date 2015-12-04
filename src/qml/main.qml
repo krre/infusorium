@@ -12,6 +12,7 @@ import "../js/infu-rpc.js" as Rpc
 ApplicationWindow {
     property var currentTab: tabView.count > 0 ? tabView.getTab(tabView.currentIndex).item : null
     property alias webSocket: webSocket
+    property bool isConnected: webSocket.status === WebSocket.Open
     id: mainRoot
     title: APP.name
     width: 800
@@ -20,7 +21,7 @@ ApplicationWindow {
     menuBar: MainMenu { id: mainMenu }
     statusBar: StatusBar {
         Label {
-            text: webSocket.status === WebSocket.Open ? qsTr("Connected to " + webSocket.url) : qsTr("Disconnected")
+            text: isConnected ? qsTr("Connected to " + webSocket.url) : qsTr("Disconnected")
         }
     }
 

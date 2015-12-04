@@ -11,11 +11,13 @@ MenuBar {
 
         MenuItem {
             text: qsTr("Connect to IM...")
+            enabled: !mainRoot.isConnected
             onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/main/Connect.qml")
         }
 
         MenuItem {
             text: qsTr("Disconnect")
+            enabled: mainRoot.isConnected
             onTriggered: {
                 mainRoot.webSocket.active = false
             }
@@ -87,6 +89,7 @@ MenuBar {
         MenuItem {
             text: qsTr("Show Logger")
             onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/main/Logger.qml")
+            enabled: mainRoot.isConnected
         }
     }
 
