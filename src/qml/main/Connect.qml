@@ -64,7 +64,7 @@ WindowDialog {
             id: autoconnect
             text: qsTr("Autoconnect")
             Layout.columnSpan: 2
-            checked: SETTINGS.value("Common", "autoconnect", false)
+            checked: SETTINGS.value("Common", "autoconnect", false) === "true"
         }
 
         TextArea {

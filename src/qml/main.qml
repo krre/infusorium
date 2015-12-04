@@ -25,7 +25,12 @@ ApplicationWindow {
         }
     }
 
-    Component.onCompleted: Settings.load()
+    Component.onCompleted: {
+        Settings.load()
+        if (SETTINGS.value("Common", "autoconnect") === "true") {
+            webSocket.active = true
+        }
+    }
 
     function createObjInMainContext(url, properties) {
         Utils.createDynamicObject(mainRoot, url, properties ? properties : {})
