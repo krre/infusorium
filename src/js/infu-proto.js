@@ -1,13 +1,13 @@
-function send(message, id) {
-    message.id = "aquarium-" + id
+function send(message) {
+    message.sender = "aquarium"
     mainRoot.webSocket.sendTextMessage(JSON.stringify(message))
 }
 
 function receive(message) {
     print("Infusoria:", message)
     var obj = JSON.parse(message)
-    if (obj && obj.id) {
-        if (obj.id === "aquarium-onlineList") {
+    if (obj) {
+        if (obj.action === "getInfusories") {
             if (obj.result) {
                 fillInfuModel(obj)
             }
@@ -15,8 +15,8 @@ function receive(message) {
     }
 }
 
-function onlineList() {
-    send({ method: "onlineList" }, "onlineList")
+function getInfusories() {
+    send({ action: "getInfusories" })
 }
 
 function fillInfuModel(obj) {
@@ -25,4 +25,8 @@ function fillInfuModel(obj) {
         var path = obj.result[i]
         infuModel.append({ name: UTILS.pathToBaseName(path) })
     }
+}
+
+function getLog(value) {
+    send({ action: "getLog", options: { enable: value } })
 }

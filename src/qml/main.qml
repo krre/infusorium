@@ -50,7 +50,7 @@ ApplicationWindow {
 
         onStatusChanged: {
             if (status === WebSocket.Open) {
-                InfuProto.onlineList()
+                InfuProto.getInfusories()
             }
         }
 
