@@ -14,6 +14,7 @@ WindowDialog {
         stayOnScreen = true
         mainRoot.webSocket.active = false
         mainRoot.webSocket.active = true
+        SETTINGS.setValue("Common", "autoconnect", autoconnect.checked)
     }
 
     Connections {
@@ -57,6 +58,13 @@ WindowDialog {
             id: port
             Layout.fillWidth: true
             text: SETTINGS.value("Infusoria", "port")
+        }
+
+        CheckBox {
+            id: autoconnect
+            text: qsTr("Autoconnect")
+            Layout.columnSpan: 2
+            checked: SETTINGS.value("Common", "autoconnect", false)
         }
 
         TextArea {
