@@ -6,6 +6,7 @@ import QtQuick.Dialogs 1.2
 
 Window {
     id: root
+    title: qsTr("Logger")
     width: 500
     height: 500
     minimumWidth: 200
