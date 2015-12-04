@@ -63,6 +63,13 @@ ApplicationWindow {
             id: tabView
             Layout.fillWidth: true
             frameVisible: false
+
+            function attachInfusoria() {
+                var name = infuModel.get(infuTableView.currentRow).name
+                var tab = addTab(name)
+                tab.setSource("qrc:/qml/main/WorkArea.qml", { name: name })
+                currentIndex = tabView.count - 1
+            }
         }
 
         ColumnLayout {
@@ -78,6 +85,8 @@ ApplicationWindow {
                 frameVisible: false
                 model: infuModel
 
+                onDoubleClicked: tabView.attachInfusoria()
+
                 TableViewColumn {
                     title: qsTr("Infusoria")
                     role: "name"
@@ -92,12 +101,7 @@ ApplicationWindow {
                     Layout.fillWidth: true
                     text: qsTr("Attach")
                     enabled: infuTableView.currentRow >= 0
-                    onClicked: {
-                        var name = infuModel.get(infuTableView.currentRow).name
-                        var tab = tabView.addTab(name)
-                        tab.setSource("qrc:/qml/main/WorkArea.qml", { name: name })
-                        tabView.currentIndex = tabView.count - 1
-                    }
+                    onClicked: tabView.attachInfusoria()
                 }
 
                 Button {
