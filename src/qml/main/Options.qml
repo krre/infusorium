@@ -35,6 +35,7 @@ WindowDialog {
                     id: address
                     Layout.fillWidth: true
                     text: SETTINGS.value("Infusoria", "address")
+                    Component.onCompleted: forceActiveFocus()
                 }
 
                 Label {
