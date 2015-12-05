@@ -4,12 +4,16 @@ function send(message) {
 }
 
 function receive(message) {
-    print("Infusoria:", message)
+//    print("Infusoria:", message)
     var obj = JSON.parse(message)
     if (obj) {
         if (obj.action === "getInfusories") {
             if (obj.result) {
                 fillInfuModel(obj)
+            }
+        } else if (obj.action === "getLog") {
+            for (var i in obj.result) {
+                infuManager.log(obj.result[i])
             }
         }
     }

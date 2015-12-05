@@ -12,6 +12,7 @@ import "../js/infu-proto.js" as InfuProto
 ApplicationWindow {
     property var currentTab: tabView.count > 0 ? tabView.getTab(tabView.currentIndex).item : null
     property alias webSocket: webSocket
+    property alias infuManager: infuManager
     property bool isConnected: webSocket.status === WebSocket.Open
     id: mainRoot
     title: APP.name
@@ -55,6 +56,11 @@ ApplicationWindow {
         }
 
         onTextMessageReceived: InfuProto.receive(message)
+    }
+
+    QtObject {
+        id: infuManager
+        signal log(var line)
     }
 
     ListModel {
