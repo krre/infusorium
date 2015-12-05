@@ -73,7 +73,7 @@ ApplicationWindow {
         TabView {
             id: tabView
             Layout.fillWidth: true
-            frameVisible: false
+            Layout.margins: 7
 
             function attachInfusoria() {
                 var name = infuModel.get(infuTableView.currentRow).name
