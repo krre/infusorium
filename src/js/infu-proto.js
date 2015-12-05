@@ -7,13 +7,20 @@ function receive(message) {
 //    print("Infusoria:", message)
     var obj = JSON.parse(message)
     if (obj) {
-        if (obj.action === "getInfusories") {
-            if (obj.result) {
-                fillInfuModel(obj)
+        if (obj.info) {
+            if (obj.info === "log") {
+                infuManager.log(obj.value)
             }
-        } else if (obj.action === "getLog") {
-            for (var i in obj.result) {
-                infuManager.log(obj.result[i])
+
+        } else if (obj.action) {
+            if (obj.action === "getInfusories") {
+                if (obj.result) {
+                    fillInfuModel(obj)
+                }
+            } else if (obj.action === "getLog") {
+                for (var i in obj.result) {
+                    infuManager.log(obj.result[i])
+                }
             }
         }
     }

@@ -18,7 +18,7 @@ Window {
     onVisibleChanged: if (!visible) root.destroy()
 
     Component.onCompleted: InfuProto.getLog(true)
-//    Component.onDestruction: InfuProto.getLog(false)
+    Component.onDestruction: InfuProto.getLog(false)
 
     SystemPalette {
         id: sysPalette
