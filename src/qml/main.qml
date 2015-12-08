@@ -126,6 +126,15 @@ ApplicationWindow {
                     Layout.fillWidth: true
                     text: qsTr("Detach")
                     enabled: infuTableView.currentRow >= 0
+                    onClicked: {
+                        var name = infuModel.get(infuTableView.currentRow).name
+                        for (var i = 0; i < tabView.count; i++) {
+                            if (tabView.getTab(i).item.name === name) {
+                                tabView.removeTab(i)
+                                return
+                            }
+                        }
+                    }
                 }
             }
         }
