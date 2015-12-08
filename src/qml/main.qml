@@ -61,6 +61,7 @@ ApplicationWindow {
     QtObject {
         id: infuManager
         signal log(var line)
+        signal infusoriaInfo(var info)
     }
 
     ListModel {
@@ -85,7 +86,8 @@ ApplicationWindow {
                 }
 
                 var tab = addTab(name)
-                tab.setSource("qrc:/qml/main/WorkArea.qml", { name: name })
+                var uuid = infuModel.get(infuTableView.currentRow).uuid
+                tab.setSource("qrc:/qml/main/WorkArea.qml", { name: name, uuid: uuid })
                 currentIndex = tabView.count - 1
             }
         }

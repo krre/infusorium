@@ -21,6 +21,8 @@ function receive(message) {
                 for (var i in obj.result) {
                     infuManager.log(obj.result[i])
                 }
+            } else if (obj.action === "getInfusoria") {
+                infuManager.infusoriaInfo(obj.result)
             }
         }
     }
@@ -39,4 +41,8 @@ function fillInfuModel(obj) {
 
 function getLog(value) {
     send({ action: "getLog", options: { enable: value } })
+}
+
+function getInfusoria(value) {
+    send({ action: "getInfusoria", options: { uuid: value } })
 }
