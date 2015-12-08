@@ -77,6 +77,13 @@ ApplicationWindow {
 
             function attachInfusoria() {
                 var name = infuModel.get(infuTableView.currentRow).name
+                for (var i = 0; i < count; i++) {
+                    if (getTab(i).item.name === name) {
+                        currentIndex = i
+                        return
+                    }
+                }
+
                 var tab = addTab(name)
                 tab.setSource("qrc:/qml/main/WorkArea.qml", { name: name })
                 currentIndex = tabView.count - 1

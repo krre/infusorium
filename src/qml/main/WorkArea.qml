@@ -7,7 +7,7 @@ import Aquarium 1.0
 Item {
     id: root
     property bool isCurrentTab: mainRoot.currentTab === root
-    property string filePath
+    property string name
 
     ColumnLayout {
         anchors.fill: parent
