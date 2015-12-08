@@ -33,8 +33,7 @@ function getInfusories() {
 function fillInfuModel(obj) {
     infuModel.clear()
     for (var i in obj.result) {
-        var path = obj.result[i]
-        infuModel.append({ name: UTILS.pathToBaseName(path) })
+        infuModel.append({ name: obj.result[i].name, uuid: obj.result[i].uuid })
     }
 }
 
