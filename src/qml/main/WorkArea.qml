@@ -16,7 +16,6 @@ Item {
     Connections {
         target: mainRoot.infuManager
         onInfusoriaInfo: {
-            print(info.uuid, uuid)
             if (info.uuid !== uuid) return
             infoLabel.text = "<b>" + qsTr("Base") + "</b><br><br>" +
                     qsTr("Name:") + "\t" + info.name + "<br>" +
