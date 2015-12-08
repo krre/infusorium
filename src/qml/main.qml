@@ -75,7 +75,7 @@ ApplicationWindow {
             Layout.fillWidth: true
             Layout.margins: 7
 
-            function attachInfusoria() {
+            function openInfusoria() {
                 var name = infuModel.get(infuTableView.currentRow).name
                 for (var i = 0; i < count; i++) {
                     if (getTab(i).item.name === name) {
@@ -103,7 +103,7 @@ ApplicationWindow {
                 frameVisible: false
                 model: infuModel
 
-                onDoubleClicked: tabView.attachInfusoria()
+                onDoubleClicked: tabView.openInfusoria()
 
                 TableViewColumn {
                     title: qsTr("Infusoria")
@@ -117,14 +117,14 @@ ApplicationWindow {
 
                 Button {
                     Layout.fillWidth: true
-                    text: qsTr("Attach")
+                    text: qsTr("Open")
                     enabled: infuTableView.currentRow >= 0
-                    onClicked: tabView.attachInfusoria()
+                    onClicked: tabView.openInfusoria()
                 }
 
                 Button {
                     Layout.fillWidth: true
-                    text: qsTr("Detach")
+                    text: qsTr("Close")
                     enabled: infuTableView.currentRow >= 0
                     onClicked: {
                         var name = infuModel.get(infuTableView.currentRow).name
