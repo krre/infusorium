@@ -43,5 +43,29 @@ Item {
                 id: infoLabel
             }
         }
+
+        RowLayout {
+
+            Label {
+                text: qsTr("Message:")
+            }
+
+            TextField {
+                id: message
+                Layout.preferredWidth: 200
+                Component.onCompleted: forceActiveFocus()
+                Keys.onReturnPressed: sendMessage()
+
+                function sendMessage() {
+                    InfuProto.sendMessage(message.text)
+                    message.text = ""
+                }
+            }
+
+            Button {
+                text: qsTr("Send")
+                onClicked: message.sendMessage()
+            }
+        }
     }
 }

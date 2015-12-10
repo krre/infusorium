@@ -46,3 +46,7 @@ function getLog(value) {
 function getInfusoria(value) {
     send({ action: "getInfusoria", options: { uuid: value } })
 }
+
+function sendMessage(message) {
+    send({ action: "message", options: { message: message } })
+}
