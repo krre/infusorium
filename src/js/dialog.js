@@ -1,7 +1,7 @@
 .import "../js/utils.js" as Utils
 
 function selectFile(parent, options) {
-    return Utils.createDynamicObject(parent, "qrc:/qml/components/filedialog/FileDialogOpen.qml", options ? options : {})
+    return Utils.createDynamicObject(parent, "qrc:/qml/components/filedialog/FileDialogOpen.qml", options || {})
 }
 
 function selectDirectory(parent) {
