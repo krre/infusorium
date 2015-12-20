@@ -9,8 +9,7 @@ include(../infusoria/src/common/common.pri)
 DEFINES += \
     "MAJOR=0" \
     "MINOR=1" \
-    "PATCH=0" \
-    "NAME=\\\"Aquarium\\\""
+    "PATCH=0"
 
 SOURCES += \
     src/cpp/main.cpp \

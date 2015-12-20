@@ -97,7 +97,7 @@ MenuBar {
         title: qsTr("Help")
 
         MenuItem {
-            text: qsTr(String("About %1...").arg(APP.name))
+            text: qsTr(String("About %1...").arg("Aquarium"))
             onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/main/About.qml")
         }
     }

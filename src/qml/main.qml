@@ -15,7 +15,7 @@ ApplicationWindow {
     property alias infuManager: infuManager
     property bool isConnected: webSocket.status === WebSocket.Open
     id: mainRoot
-    title: APP.name
+    title: "Aquarium"
     width: 800
     height: 600
     visible: true

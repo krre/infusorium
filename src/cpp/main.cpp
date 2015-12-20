@@ -10,7 +10,7 @@
 int main(int argc, char* argv[])
 {
     QApplication appication(argc, argv);
-    appication.setApplicationName(App::name());
+    appication.setApplicationName("Aquarium");
     appication.setApplicationVersion(App::version());
 
     qmlRegisterType<Process>("Aquarium", 1, 0, "Process");
