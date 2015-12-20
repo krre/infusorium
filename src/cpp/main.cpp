@@ -1,6 +1,6 @@
 #include <QApplication>
 #include <QtQml>
-#include <registerosgtypes.h>
+//#include <registerosgtypes.h>
 #include <app.h>
 #include <settings.h>
 #include <utils.h>
@@ -16,7 +16,7 @@ int main(int argc, char* argv[])
     qmlRegisterType<Process>("Aquarium", 1, 0, "Process");
     qmlRegisterType<Net>("Aquarium", 1, 0, "Net");
 
-    registerOsgTypes();
+//    registerOsgTypes();
 
     App app;
     Utils utils;
