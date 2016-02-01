@@ -11,8 +11,8 @@ WindowDialog {
     height: 200
 
     onAccepted: {
-        SETTINGS.setValue("Infusoria", "address", address.text)
-        SETTINGS.setValue("Infusoria", "port", port.text)
+        Settings.setValue("Infusoria", "address", address.text)
+        Settings.setValue("Infusoria", "port", port.text)
     }
 
     ColumnLayout {
@@ -34,7 +34,7 @@ WindowDialog {
                 TextField {
                     id: address
                     Layout.fillWidth: true
-                    text: SETTINGS.value("Infusoria", "address")
+                    text: Settings.value("Infusoria", "address")
                     Component.onCompleted: forceActiveFocus()
                 }
 
@@ -45,7 +45,7 @@ WindowDialog {
                 TextField {
                     id: port
                     Layout.fillWidth: true
-                    text: SETTINGS.value("Infusoria", "port")
+                    text: Settings.value("Infusoria", "port")
                 }
             }
         }

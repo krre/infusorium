@@ -25,7 +25,6 @@ DISTFILES += \
     src/js/utils.js \
     src/qml/main/About.qml \
     src/qml/main/Options.qml \
-    src/js/settings.js \
     src/qml/components/BrowseButton.qml \
     src/qml/components/filedialog/FileDialogBase.qml \
     src/qml/components/filedialog/FileDialogDirectory.qml \

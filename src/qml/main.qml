@@ -6,7 +6,6 @@ import QtWebSockets 1.0
 import Aquarium 1.0
 import "main"
 import "../js/utils.js" as Utils
-import "../js/settings.js" as Settings
 import "../js/infu-proto.js" as InfuProto
 
 ApplicationWindow {
@@ -27,10 +26,23 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-        Settings.load()
-        if (SETTINGS.value("Common", "autoconnect") === "true") {
-            webSocket.active = true
+        var geometry = Settings.map("MainWindow")
+        if (Object.keys(geometry).length) {
+            x = geometry.x
+            y = geometry.y
+            width = geometry.width
+            height = geometry.height
+        } else {
+            if (Screen.width && Screen.height) {
+                x = (Screen.width - width) / 2
+                y = (Screen.height - height) / 2
+            } else {
+                x = 200
+                y = 200
+            }
         }
+        webSocket.active = Settings.value("Common", "autoconnect") === "true"
+        infuTableContainer.visible = Settings.value("InfuTable", "visible", true) === "true"
     }
 
     function createObjInMainContext(url, properties) {
@@ -38,7 +50,13 @@ ApplicationWindow {
     }
 
     onClosing: {
-        Settings.save()
+        Settings.setMap("MainWindow", {
+            x: x,
+            y: y,
+            width: width,
+            height: height
+        })
+        Settings.setValue("InfuTable", "visible", infuTableContainer.visible)
     }
 
     Net {
@@ -47,7 +65,7 @@ ApplicationWindow {
 
     WebSocket {
         id: webSocket
-        url: String("ws://%1:%2").arg(SETTINGS.value("Infusoria", "address")).arg(SETTINGS.value("Infusoria", "port"))
+        url: String("ws://%1:%2").arg(Settings.value("Infusoria", "address")).arg(Settings.value("Infusoria", "port"))
 
         onStatusChanged: {
             if (status === WebSocket.Open) {

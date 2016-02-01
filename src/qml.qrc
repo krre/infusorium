@@ -5,7 +5,6 @@
         <file>js/utils.js</file>
         <file>qml/main/About.qml</file>
         <file>qml/main/Options.qml</file>
-        <file>js/settings.js</file>
         <file>qml/components/BrowseButton.qml</file>
         <file>qml/components/filedialog/FileDialogBase.qml</file>
         <file>qml/components/filedialog/FileDialogDirectory.qml</file>
