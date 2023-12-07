@@ -2,7 +2,7 @@ import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.1
 import QtWebSockets 1.0
-import Aquarium 1.0
+import Infusorium 1.0
 import "../../js/infu-proto.js" as InfuProto
 
 Item {

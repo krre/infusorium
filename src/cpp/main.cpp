@@ -10,11 +10,11 @@
 int main(int argc, char* argv[])
 {
     QApplication appication(argc, argv);
-    appication.setApplicationName("Aquarium");
+    appication.setApplicationName("Infusorium");
     appication.setApplicationVersion(App::version());
 
-    qmlRegisterType<Process>("Aquarium", 1, 0, "Process");
-    qmlRegisterType<Net>("Aquarium", 1, 0, "Net");
+    qmlRegisterType<Process>("Infusorium", 1, 0, "Process");
+    qmlRegisterType<Net>("Infusorium", 1, 0, "Net");
 
 //    registerOsgTypes();
 
