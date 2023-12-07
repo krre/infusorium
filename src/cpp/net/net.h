@@ -1,5 +1,5 @@
 #pragma once
-#include <QtCore>
+#include <QObject>
 
 class Net : public QObject
 {

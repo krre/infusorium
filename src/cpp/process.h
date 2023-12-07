@@ -1,5 +1,5 @@
 #pragma once
-#include <QtCore>
+#include <QProcess>
 
 class Process: public QProcess
 {
