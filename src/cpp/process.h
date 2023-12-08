@@ -1,8 +1,7 @@
 #pragma once
 #include <QProcess>
 
-class Process: public QProcess
-{
+class Process: public QProcess {
     Q_OBJECT
 public:
     Process();

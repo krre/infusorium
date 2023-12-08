@@ -1,14 +1,12 @@
 #include <QApplication>
 #include <QtQml>
-//#include <registerosgtypes.h>
 #include <app.h>
 #include <settings.h>
 #include <utils.h>
 #include "net/net.h"
 #include "process.h"
 
-int main(int argc, char* argv[])
-{
+int main(int argc, char* argv[]) {
     QApplication appication(argc, argv);
     appication.setApplicationName("Infusorium");
     appication.setApplicationVersion(App::version());
