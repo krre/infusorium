@@ -1,4 +1,4 @@
-#include "net.h"
+#include "Net.h"
 
 Net::Net(QObject *parent) : QObject(parent) {
 }

@@ -1,10 +1,10 @@
+#include "net/Net.h"
+#include "Process.h"
+#include <App.h>
+#include <Settings.h>
+#include <Utils.h>
 #include <QApplication>
 #include <QtQml>
-#include <app.h>
-#include <settings.h>
-#include <utils.h>
-#include "net/net.h"
-#include "process.h"
 
 int main(int argc, char* argv[]) {
     QApplication appication(argc, argv);

@@ -12,9 +12,9 @@ DEFINES += \
     "PATCH=0"
 
 SOURCES += \
+    src/cpp/Process.cpp \
     src/cpp/main.cpp \
-    src/cpp/process.cpp \
-    src/cpp/net/net.cpp
+    src/cpp/net/Net.cpp
 
 RESOURCES += \
     src/qml.qrc
@@ -45,5 +45,5 @@ DISTFILES += \
     src/qml/components/ButtonBase.qml
 
 HEADERS += \
-    src/cpp/process.h \
-    src/cpp/net/net.h
+    src/cpp/Process.h \
+    src/cpp/net/Net.h

@@ -1,4 +1,4 @@
-#include "process.h"
+#include "Process.h"
 
 Process::Process() {
     setProcessChannelMode(QProcess::MergedChannels);
