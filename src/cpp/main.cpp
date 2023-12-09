@@ -14,8 +14,6 @@ int main(int argc, char* argv[]) {
     qmlRegisterType<Process>("Infusorium", 1, 0, "Process");
     qmlRegisterType<Net>("Infusorium", 1, 0, "Net");
 
-//    registerOsgTypes();
-
     App app;
     Utils utils;
     QString filePath = qApp->applicationDirPath() + "/aquarium.ini";

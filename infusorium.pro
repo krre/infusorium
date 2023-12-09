@@ -3,7 +3,6 @@ QT += opengl qml quick websockets
 CONFIG += c++11
 TEMPLATE = app
 
-#include(../qosg/src/qosg.pri)
 include(../infusoria/src/common/common.pri)
 
 DEFINES += \
