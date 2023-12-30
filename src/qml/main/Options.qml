@@ -19,7 +19,7 @@ WindowDialog {
         width: parent.width
 
         GroupBox {
-            title: "Infusoria Manager"
+            title: "Infusoria"
             Layout.preferredWidth: parent.width
             Layout.alignment: Qt.AlignHCenter
 
