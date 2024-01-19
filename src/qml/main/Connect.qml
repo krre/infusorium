@@ -19,7 +19,8 @@ WindowDialog {
 
     Connections {
         target: mainRoot.webSocket
-        onStatusChanged: {
+
+        function onStatusChanged(status) {
             if (status === WebSocket.Connecting) {
                 statusTextArea.appendWithTime(qsTr("Connecting to ") + mainRoot.webSocket.url)
             } else if (status === WebSocket.Open) {
