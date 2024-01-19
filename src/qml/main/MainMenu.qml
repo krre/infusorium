@@ -10,7 +10,7 @@ MenuBar {
         title: qsTr("Infusoria")
 
         MenuItem {
-            text: qsTr("Connect to IM...")
+            text: qsTr("Connect...")
             enabled: !mainRoot.isConnected
             onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/qml/main/Connect.qml")
         }

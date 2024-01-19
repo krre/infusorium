@@ -6,7 +6,7 @@ import "../components"
 
 WindowDialog {
     id: root
-    title: qsTr("Connect to IM")
+    title: qsTr("Connect to Infusoria")
     width: 400
     height: 200
 
