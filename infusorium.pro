@@ -12,8 +12,7 @@ DEFINES += \
 
 SOURCES += \
     src/cpp/Process.cpp \
-    src/cpp/main.cpp \
-    src/cpp/net/Net.cpp
+    src/cpp/main.cpp
 
 RESOURCES += \
     src/qml.qrc
@@ -44,5 +43,4 @@ DISTFILES += \
     src/qml/components/ButtonBase.qml
 
 HEADERS += \
-    src/cpp/Process.h \
-    src/cpp/net/Net.h
+    src/cpp/Process.h

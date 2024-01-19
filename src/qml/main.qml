@@ -59,10 +59,6 @@ ApplicationWindow {
         Settings.setValue("InfuTable", "visible", infuTableContainer.visible)
     }
 
-    Net {
-        id: net
-    }
-
     WebSocket {
         id: webSocket
         url: String("ws://%1:%2").arg(Settings.value("Infusoria", "address")).arg(Settings.value("Infusoria", "port"))

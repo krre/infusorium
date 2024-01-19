@@ -1,4 +1,3 @@
-#include "net/Net.h"
 #include "Process.h"
 #include <App.h>
 #include <Settings.h>
@@ -12,7 +11,6 @@ int main(int argc, char* argv[]) {
     appication.setApplicationVersion(App::version());
 
     qmlRegisterType<Process>("Infusorium", 1, 0, "Process");
-    qmlRegisterType<Net>("Infusorium", 1, 0, "Net");
 
     App app;
     Utils utils;
