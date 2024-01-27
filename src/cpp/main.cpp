@@ -1,5 +1,5 @@
 #include "Process.h"
-#include <App.h>
+#include <Application.h>
 #include <Settings.h>
 #include <Utils.h>
 #include <QApplication>
@@ -8,11 +8,11 @@
 int main(int argc, char* argv[]) {
     QApplication appication(argc, argv);
     appication.setApplicationName("Infusorium");
-    appication.setApplicationVersion(App::version());
+    appication.setApplicationVersion(Application::version());
 
     qmlRegisterType<Process>("Infusorium", 1, 0, "Process");
 
-    App app;
+    Application app;
     Utils utils;
     QString filePath = qApp->applicationDirPath() + "/aquarium.ini";
     Settings settings(filePath);
