@@ -12,7 +12,7 @@ int main(int argc, char* argv[]) {
     qmlRegisterType<Process>("Infusorium", 1, 0, "Process");
 
     Utils utils;
-    QString filePath = qApp->applicationDirPath() + "/aquarium.ini";
+    QString filePath = qApp->applicationDirPath() + "/infusorium.ini";
     Settings settings(filePath);
 
     if (!QFile::exists(filePath)) {
