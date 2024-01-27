@@ -8,16 +8,17 @@
 int main(int argc, char* argv[]) {
     Application appication(argc, argv);
     appication.setApplicationName("Infusorium");
+    appication.setOrganizationName("Infusoria");
 
     qmlRegisterType<Process>("Infusorium", 1, 0, "Process");
 
     Utils utils;
-    QString filePath = qApp->applicationDirPath() + "/infusorium.ini";
-    Settings settings(filePath);
+    Settings settings;
 
-    if (!QFile::exists(filePath)) {
+    if (settings.isEmpty()) {
         settings.setValue("Infusoria", "address", "localhost");
         settings.setValue("Infusoria", "port", "51000");
+        settings.sync();
     }
 
     QQmlApplicationEngine engine;
