@@ -1,5 +1,5 @@
 function send(message) {
-    message.sender = "aquarium"
+    message.sender = "infusorium"
     mainRoot.webSocket.sendTextMessage(JSON.stringify(message))
 }
 
