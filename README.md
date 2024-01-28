@@ -1,5 +1,5 @@
 # Infusorium
-Environment for controlling [Infusoria](https://github.com/krre/infusoria) AI units
+Environment for [Infusoria](https://github.com/krre/infusoria) artifical life units
 
 ## Dependencies
-- Qt 5.5.0
+- Qt 5.15.0
