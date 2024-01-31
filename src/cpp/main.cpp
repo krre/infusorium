@@ -9,6 +9,7 @@ int main(int argc, char* argv[]) {
     Application application(argc, argv);
     application.setApplicationName("Infusorium");
     application.setOrganizationName("Infusoria");
+    application.setApplicationVersion("0.1.0");
 
     qmlRegisterType<Process>("Infusorium", 1, 0, "Process");
 

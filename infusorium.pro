@@ -5,11 +5,6 @@ TEMPLATE = app
 
 include(../infusoria/src/common/common.pri)
 
-DEFINES += \
-    "MAJOR=0" \
-    "MINOR=1" \
-    "PATCH=0"
-
 SOURCES += \
     src/cpp/Process.cpp \
     src/cpp/main.cpp
