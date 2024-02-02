@@ -1,6 +1,6 @@
 QT += opengl qml quick websockets
 
-CONFIG += c++11
+CONFIG += c++20
 TEMPLATE = app
 
 include(../infusoria/src/common/common.pri)
