@@ -1,4 +1,4 @@
-QT += opengl qml quick websockets
+QT += opengl qml quick websockets widgets
 
 CONFIG += c++20
 TEMPLATE = app

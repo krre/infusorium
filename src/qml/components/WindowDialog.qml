@@ -1,8 +1,8 @@
-import QtQuick 2.5
-import QtQuick.Controls 1.4
-import QtQuick.Layouts 1.2
-import QtQuick.Window 2.2
-import QtQuick.Dialogs 1.2
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import QtQuick.Window
+import QtQuick.Dialogs
 
 Window {
     default property alias data: content.data
@@ -51,7 +51,7 @@ Window {
 
             ButtonBase {
                 text: qsTr("OK")
-                isDefault: activeFocus || activeFocusItem && activeFocusItem.objectName !== "ButtonBase"
+                // isDefault: activeFocus || activeFocusItem && activeFocusItem.objectName !== "ButtonBase"
                 visible: (StandardButton.Ok & standardButtons) === StandardButton.Ok
                 onClicked: {
                     stayOnScreen = false

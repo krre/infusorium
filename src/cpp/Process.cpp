@@ -2,7 +2,6 @@
 
 Process::Process() {
     setProcessChannelMode(QProcess::MergedChannels);
-    setReadChannelMode(QProcess::MergedChannels);
     connect(this, SIGNAL(readyRead()), this, SLOT(onReadyRead()));
 }
 

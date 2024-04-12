@@ -1,5 +1,5 @@
-import QtQuick 2.5
-import QtQuick.Controls 1.4
+import QtQuick
+import QtQuick.Controls
 import "../../js/utils.js" as Utils
 import "../../js/dialog.js" as Dialog
 import "../../js/files.js" as Files
@@ -27,14 +27,14 @@ MenuBar {
 
         MenuItem {
             text: qsTr("Close")
-            shortcut: "Ctrl+W"
+            // shortcut: "Ctrl+W"
             onTriggered: tabView.removeTab(tabView.currentIndex)
             enabled: tabView.count > 0
         }
 
         MenuItem {
             text: qsTr("Close All")
-            shortcut: "Ctrl+Shift+W"
+            // shortcut: "Ctrl+Shift+W"
             onTriggered: {
                 while (tabView.count > 0) {
                     tabView.removeTab(0)
@@ -62,7 +62,7 @@ MenuBar {
 
         MenuItem {
             text: qsTr("Exit")
-            shortcut: "Ctrl+Q"
+            // shortcut: "Ctrl+Q"
             onTriggered: Qt.quit()
         }
     }

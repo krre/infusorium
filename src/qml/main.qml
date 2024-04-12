@@ -1,8 +1,9 @@
-import QtQuick 2.5
-import QtQuick.Controls 1.4
-import QtQuick.Layouts 1.1
-import QtQuick.Window 2.2
-import QtWebSockets 1.0
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import QtQuick.Window
+import QtWebSockets
+import Qt.labs.qmlmodels
 import Infusorium 1.0
 import "main"
 import "../js/utils.js" as Utils
@@ -19,10 +20,8 @@ ApplicationWindow {
     height: 600
     visible: true
     menuBar: MainMenu { id: mainMenu }
-    statusBar: StatusBar {
-        Label {
-            text: isConnected ? qsTr("Connected to " + webSocket.url) : qsTr("Disconnected")
-        }
+    footer: Label {
+        text: isConnected ? qsTr("Connected to " + webSocket.url) : qsTr("Disconnected")
     }
 
     Component.onCompleted: {
@@ -78,14 +77,16 @@ ApplicationWindow {
         signal infusoriaInfo(var info)
     }
 
-    ListModel {
+    TableModel {
         id: infuModel
+
+        TableModelColumn { display: "name" }
     }
 
     SplitView {
         anchors.fill: parent
 
-        TabView {
+        TabBar {
             id: tabView
             Layout.fillWidth: true
             Layout.margins: 7
@@ -116,15 +117,15 @@ ApplicationWindow {
                 id: infuTableView
                 Layout.preferredWidth: parent.width
                 Layout.fillHeight: true
-                frameVisible: false
+                // frameVisible: false
                 model: infuModel
 
-                onDoubleClicked: tabView.openInfusoria()
+                // onDoubleClicked: tabView.openInfusoria()
 
-                TableViewColumn {
-                    title: qsTr("Infusoria")
-                    role: "name"
-                }
+                // TableViewColumn {
+                //     title: qsTr("Infusoria")
+                //     role: "name"
+                // }
             }
 
             RowLayout {

@@ -1,7 +1,7 @@
-import QtQuick 2.5
-import QtQuick.Controls 1.4
-import QtQuick.Layouts 1.1
-import QtWebSockets 1.0
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import QtWebSockets
 import Infusorium 1.0
 import "../../js/infu-proto.js" as InfuProto
 
