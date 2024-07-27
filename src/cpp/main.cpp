@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
 
     if (settings.isEmpty()) {
         settings.setValue("Infusoria", "address", "localhost");
-        settings.setValue("Infusoria", "port", "51000");
+        settings.setValue("Infusoria", "port", 51000);
         settings.sync();
     }
 
