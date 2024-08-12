@@ -12,7 +12,7 @@ int main(int argc, char* argv[]) {
 
     Application app(argc, argv);
     app.setApplicationName("Infusorium");
-    app.setOrganizationName("Infusoria");
+    app.setOrganizationName("Cyberlife");
     app.setApplicationVersion("0.1.0");
 
     qmlRegisterType<Process>("Infusorium", 1, 0, "Process");
