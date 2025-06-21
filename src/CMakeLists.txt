@@ -3,6 +3,7 @@ configure_file(config.h.in config.h @ONLY)
 add_library(common STATIC
     core/Application.cpp core/Application.h
     ui/MainWindow.cpp ui/MainWindow.h
+    world/World.h world/World.cpp
 )
 
 # For visibility in IDE (e.g., Qt Creator)

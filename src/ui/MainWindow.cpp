@@ -1,5 +1,6 @@
 #include "MainWindow.h"
 #include "core/Application.h"
+#include "world/World.h"
 #include <QMenuBar>
 #include <QMessageBox>
 #include <QCoreApplication>
@@ -7,6 +8,7 @@
 #include <QSettings>
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
+    m_world = new World(this);
     createActions();
     readSettings();
 }
@@ -52,6 +54,10 @@ void MainWindow::writeSettings() {
 void MainWindow::createActions() {
     auto fileMenu = menuBar()->addMenu(tr("File"));
     fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, this, &QMainWindow::close);
+
+    auto worldMenu = menuBar()->addMenu(tr("World"));
+    worldMenu->addAction(tr("Run"), m_world, &World::run);
+    worldMenu->addAction(tr("Stop"), m_world, &World::stop);
 
     auto helpMenu = menuBar()->addMenu(tr("Help"));
     helpMenu->addAction(tr("About %1...").arg(Application::Name), this, &MainWindow::showAbout);

@@ -1,6 +1,8 @@
 #pragma once
 #include <QMainWindow>
 
+class World;
+
 class MainWindow : public QMainWindow {
 
 public:
@@ -17,4 +19,6 @@ private:
     void writeSettings();
 
     void createActions();
+
+    World* m_world = nullptr;
 };
