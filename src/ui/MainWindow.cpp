@@ -1,5 +1,6 @@
 #include "MainWindow.h"
 #include "core/Application.h"
+#include "dialog/NewWorld.h"
 #include "world/World.h"
 #include <QMenuBar>
 #include <QMessageBox>
@@ -16,6 +17,14 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
 void MainWindow::closeEvent(QCloseEvent* event) {
     writeSettings();
     event->accept();
+}
+
+void MainWindow::create() {
+    NewWorld newWorld;
+
+    if (newWorld.exec() == QDialog::Accepted) {
+        m_world->create(newWorld.name(), newWorld.age());
+    }
 }
 
 void MainWindow::showAbout() {
@@ -53,6 +62,8 @@ void MainWindow::writeSettings() {
 
 void MainWindow::createActions() {
     auto fileMenu = menuBar()->addMenu(tr("File"));
+    fileMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &MainWindow::create);
+    fileMenu->addSeparator();
     fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, this, &QMainWindow::close);
 
     auto worldMenu = menuBar()->addMenu(tr("World"));

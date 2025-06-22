@@ -5,6 +5,7 @@ class World : public QObject {
 public:
     World(QObject* parent);
 
+    void create(const QString& name, quint32 age);
     bool isRunning() const;
 
 public slots:
