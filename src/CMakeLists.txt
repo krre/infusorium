@@ -4,6 +4,7 @@ add_library(common STATIC
     core/Application.cpp core/Application.h
     ui/MainWindow.cpp ui/MainWindow.h
     world/World.h world/World.cpp
+    ui/dialog/StandardDialog.cpp ui/dialog/StandardDialog.h
 )
 
 # For visibility in IDE (e.g., Qt Creator)
