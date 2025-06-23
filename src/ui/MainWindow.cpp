@@ -23,7 +23,7 @@ void MainWindow::create() {
     NewWorld newWorld;
 
     if (newWorld.exec() == QDialog::Accepted) {
-        m_world->create(newWorld.name(), newWorld.age());
+        m_world->create(newWorld.name(), newWorld.directory(), newWorld.age());
     }
 }
 

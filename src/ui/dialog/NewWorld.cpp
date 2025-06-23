@@ -1,15 +1,21 @@
 #include "NewWorld.h"
+#include "ui/widget/BrowseLayout.h"
 #include <QLineEdit>
 #include <QIntValidator>
 #include <QFormLayout>
 #include <QDialogButtonBox>
 #include <QPushButton>
+#include <QDir>
 
 NewWorld::NewWorld() {
     setWindowTitle(tr("New World"));
 
     m_nameLineEdit = new QLineEdit;
     connect(m_nameLineEdit, &QLineEdit::textChanged, this, &NewWorld::setOkButtonState);
+
+    m_directoryBrowseLayout = new BrowseLayout;
+    m_directoryBrowseLayout->lineEdit()->setText(QDir::homePath());
+    connect(m_directoryBrowseLayout->lineEdit(), &QLineEdit::textChanged, this, &NewWorld::setOkButtonState);
 
     m_ageLineEdit = new QLineEdit;
     connect(m_ageLineEdit, &QLineEdit::textChanged, this, &NewWorld::setOkButtonState);
@@ -20,11 +26,12 @@ NewWorld::NewWorld() {
 
     auto formLayout = new QFormLayout;
     formLayout->addRow(tr("Name:"), m_nameLineEdit);
+    formLayout->addRow(tr("Directory:"), m_directoryBrowseLayout);
     formLayout->addRow(tr("Age:"), m_ageLineEdit);
 
     setContentLayout(formLayout);
 
-    resizeToWidth(400);
+    resizeToWidth(500);
     m_nameLineEdit->setFocus();
     setOkButtonState();
 }
@@ -33,10 +40,15 @@ QString NewWorld::name() const {
     return m_nameLineEdit->text();
 }
 
+QString NewWorld::directory() const {
+    return m_directoryBrowseLayout->lineEdit()->text();
+}
+
 quint32 NewWorld::age() const {
     return m_ageLineEdit->text().toUInt();
 }
 
 void NewWorld::setOkButtonState() {
-    buttonBox()->button(QDialogButtonBox::Ok)->setEnabled(!(m_nameLineEdit->text().isEmpty() || m_ageLineEdit->text().isEmpty()));
+    bool isAllFieldsFilled = !(m_nameLineEdit->text().isEmpty() || m_directoryBrowseLayout->lineEdit()->text().isEmpty() || m_ageLineEdit->text().isEmpty());
+    buttonBox()->button(QDialogButtonBox::Ok)->setEnabled(isAllFieldsFilled);
 }

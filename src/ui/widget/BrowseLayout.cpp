@@ -18,7 +18,7 @@ QLineEdit* BrowseLayout::lineEdit() const {
 }
 
 void BrowseLayout::onClicked() {
-    QString dirPath = QFileDialog::getExistingDirectory();
+    QString dirPath = QFileDialog::getExistingDirectory(nullptr, QString(), m_lineEdit->text());
 
     if (!dirPath.isEmpty()) {
         m_lineEdit->setText(dirPath);

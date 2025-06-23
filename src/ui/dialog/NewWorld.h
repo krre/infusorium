@@ -1,6 +1,7 @@
 #pragma once
 #include "StandardDialog.h"
 
+class BrowseLayout;
 class QLineEdit;
 
 class NewWorld : public StandardDialog {
@@ -9,6 +10,7 @@ public:
     NewWorld();
 
     QString name() const;
+    QString directory() const;
     quint32 age() const;
 
 private slots:
@@ -16,5 +18,6 @@ private slots:
 
 private:
     QLineEdit* m_nameLineEdit = nullptr;
+    BrowseLayout* m_directoryBrowseLayout = nullptr;
     QLineEdit* m_ageLineEdit = nullptr;
 };

@@ -5,8 +5,8 @@ World::World(QObject* parent) : QObject(parent) {
 
 }
 
-void World::create(const QString& name, quint32 age) {
-    qDebug() << "name" << name << "age" << age;
+void World::create(const QString& name, const QString& directory, quint32 age) {
+    qDebug() << "name" << name << "directory" << directory << "age" << age;
 }
 
 bool World::isRunning() const {
