@@ -27,6 +27,11 @@ void World::open(const QString& directory) {
     m_age = world["age"].toInt();
 }
 
+void World::close() {
+    m_name.clear();
+    m_age = 0;
+}
+
 bool World::isRunning() const {
     return m_running;
 }

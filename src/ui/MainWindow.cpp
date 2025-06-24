@@ -36,6 +36,10 @@ void MainWindow::open() {
     }
 }
 
+void MainWindow::close() {
+    m_world->close();
+}
+
 void MainWindow::showAbout() {
     QMessageBox::about(this, tr("About %1").arg(Application::Name),
 tr(R"(<h3>%1 %2</h3>
@@ -73,6 +77,7 @@ void MainWindow::createActions() {
     auto fileMenu = menuBar()->addMenu(tr("File"));
     fileMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &MainWindow::create);
     fileMenu->addAction(tr("Open..."), Qt::CTRL | Qt::Key_O, this, &MainWindow::open);
+    fileMenu->addAction(tr("Close"), Qt::CTRL | Qt::Key_W, this, &MainWindow::close);
     fileMenu->addSeparator();
     fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, this, &QMainWindow::close);
 

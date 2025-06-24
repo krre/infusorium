@@ -14,6 +14,7 @@ protected:
 private slots:
     void create();
     void open();
+    void close();
 
     void showAbout();
 
