@@ -16,6 +16,8 @@ public slots:
     void stop();
 
 private:
+    void createFiles();
+
     QString m_name;
     QString m_dir;
     quint32 m_age = 0;

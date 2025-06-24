@@ -1,4 +1,6 @@
 #include "World.h"
+#include <QDir>
+#include <QJsonObject>
 #include <QDebug>
 
 World::World(QObject* parent) : QObject(parent) {
@@ -6,11 +8,12 @@ World::World(QObject* parent) : QObject(parent) {
 }
 
 void World::create(const QString& name, const QString& directory, quint32 age) {
-    qDebug() << "name" << name << "directory" << directory << "age" << age;
-
     m_name = name;
-    m_dir = name + "/" + directory;
+    m_dir = directory + "/" + name;
     m_age = age;
+
+    QDir().mkpath(m_dir);
+    createFiles();
 }
 
 bool World::isRunning() const {
@@ -35,4 +38,14 @@ void World::stop() {
     if (!m_running) return;
     m_running = false;
     qDebug() << "Stop World";
+}
+
+void World::createFiles() {
+    QJsonObject world;
+    world["name"] = m_name;
+    world["age"] = int(m_age);
+
+    QFile file(m_dir + "/world.json");
+    file.open(QIODeviceBase::WriteOnly);
+    file.write(QJsonDocument(world).toJson());
 }
