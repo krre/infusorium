@@ -16,6 +16,17 @@ void World::create(const QString& name, const QString& directory, quint32 age) {
     createFiles();
 }
 
+void World::open(const QString& directory) {
+    m_dir = directory;
+
+    QFile file(worldFilePath());
+    file.open(QIODeviceBase::ReadOnly);
+
+    QJsonObject world = QJsonDocument::fromJson(file.readAll()).object();
+    m_name = world["name"].toString();
+    m_age = world["age"].toInt();
+}
+
 bool World::isRunning() const {
     return m_running;
 }
@@ -45,7 +56,11 @@ void World::createFiles() {
     world["name"] = m_name;
     world["age"] = int(m_age);
 
-    QFile file(m_dir + "/world.json");
+    QFile file(worldFilePath());
     file.open(QIODeviceBase::WriteOnly);
     file.write(QJsonDocument(world).toJson());
+}
+
+QString World::worldFilePath() const {
+    return m_dir + "/world.json";
 }

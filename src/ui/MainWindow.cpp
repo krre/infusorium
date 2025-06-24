@@ -7,6 +7,7 @@
 #include <QCoreApplication>
 #include <QCloseEvent>
 #include <QSettings>
+#include <QFileDialog>
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     m_world = new World(this);
@@ -24,6 +25,14 @@ void MainWindow::create() {
 
     if (newWorld.exec() == QDialog::Accepted) {
         m_world->create(newWorld.name(), newWorld.directory(), newWorld.age());
+    }
+}
+
+void MainWindow::open() {
+    QString dir = QFileDialog::getExistingDirectory(this, tr("Open World"));
+
+    if (!dir.isEmpty()) {
+        m_world->open(dir);
     }
 }
 
@@ -63,6 +72,7 @@ void MainWindow::writeSettings() {
 void MainWindow::createActions() {
     auto fileMenu = menuBar()->addMenu(tr("File"));
     fileMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &MainWindow::create);
+    fileMenu->addAction(tr("Open..."), Qt::CTRL | Qt::Key_O, this, &MainWindow::open);
     fileMenu->addSeparator();
     fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, this, &QMainWindow::close);
 

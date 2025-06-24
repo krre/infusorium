@@ -6,6 +6,8 @@ public:
     World(QObject* parent);
 
     void create(const QString& name, const QString& directory, quint32 age);
+    void open(const QString& directory);
+
     bool isRunning() const;
 
     QString name() const;
@@ -17,6 +19,7 @@ public slots:
 
 private:
     void createFiles();
+    QString worldFilePath() const;
 
     QString m_name;
     QString m_dir;
