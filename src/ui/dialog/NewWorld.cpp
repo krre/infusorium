@@ -5,6 +5,7 @@
 #include <QFormLayout>
 #include <QDialogButtonBox>
 #include <QPushButton>
+#include <QMessageBox>
 #include <QDir>
 
 NewWorld::NewWorld() {
@@ -46,6 +47,14 @@ QString NewWorld::directory() const {
 
 quint32 NewWorld::age() const {
     return m_ageLineEdit->text().toUInt();
+}
+
+void NewWorld::accept() {
+    if (QDir().exists(directory() + "/" + name())) {
+        QMessageBox::critical(this, QString(), tr("World already exists!"));
+    } else {
+        StandardDialog::accept();
+    }
 }
 
 void NewWorld::setOkButtonState() {

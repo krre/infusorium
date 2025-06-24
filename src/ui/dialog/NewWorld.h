@@ -13,6 +13,9 @@ public:
     QString directory() const;
     quint32 age() const;
 
+public slots:
+    void accept() override;
+
 private slots:
     void setOkButtonState();
 
