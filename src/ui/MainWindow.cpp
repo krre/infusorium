@@ -11,6 +11,7 @@
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     m_world = new World(this);
+    changeWindowTitle();
     createActions();
     readSettings();
 }
@@ -33,11 +34,13 @@ void MainWindow::open() {
 
     if (!dir.isEmpty()) {
         m_world->open(dir);
+        changeWindowTitle();
     }
 }
 
 void MainWindow::close() {
     m_world->close();
+    changeWindowTitle();
 }
 
 void MainWindow::showAbout() {
@@ -71,6 +74,16 @@ void MainWindow::writeSettings() {
     QSettings settings;
     settings.setValue("MainWindow/geometry", saveGeometry());
     settings.setValue("MainWindow/state", saveState());
+}
+
+void MainWindow::changeWindowTitle() {
+    QString title = Application::applicationName();
+
+    if (!m_world->name().isEmpty()) {
+        title = m_world->name() + " - " + title;
+    }
+
+    setWindowTitle(title);
 }
 
 void MainWindow::createActions() {

@@ -22,6 +22,7 @@ private:
     void readSettings();
     void writeSettings();
 
+    void changeWindowTitle();
     void createActions();
 
     World* m_world = nullptr;
