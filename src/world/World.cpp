@@ -14,6 +14,7 @@ void World::create(const QString& name, const QString& directory, quint32 age) {
 
     QDir().mkpath(m_dir);
     createFiles();
+    open(m_dir);
 }
 
 void World::open(const QString& directory) {

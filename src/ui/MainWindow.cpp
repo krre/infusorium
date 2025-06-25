@@ -26,6 +26,7 @@ void MainWindow::create() {
 
     if (newWorld.exec() == QDialog::Accepted) {
         m_world->create(newWorld.name(), newWorld.directory(), newWorld.age());
+        changeWindowTitle();
     }
 }
 
