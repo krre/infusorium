@@ -45,6 +45,10 @@ quint32 World::age() const {
     return m_age;
 }
 
+QString World::dir() const {
+    return m_dir;
+}
+
 void World::run() {
     if (m_running) return;
     m_running = true;

@@ -14,6 +14,8 @@ public:
     QString name() const;
     quint32 age() const;
 
+    QString dir() const;
+
 public slots:
     void run();
     void stop();

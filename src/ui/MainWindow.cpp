@@ -32,11 +32,7 @@ void MainWindow::create() {
 
 void MainWindow::open() {
     QString dir = QFileDialog::getExistingDirectory(this, tr("Open World"));
-
-    if (!dir.isEmpty()) {
-        m_world->open(dir);
-        changeWindowTitle();
-    }
+    openWorld(dir);
 }
 
 void MainWindow::close() {
@@ -69,12 +65,16 @@ void MainWindow::readSettings() {
     }
 
     restoreState(settings.value("MainWindow/state").toByteArray());
+
+    QString lastWorld = settings.value("MainWindow/lastWorld").toString();
+    openWorld(lastWorld);
 }
 
 void MainWindow::writeSettings() {
     QSettings settings;
     settings.setValue("MainWindow/geometry", saveGeometry());
     settings.setValue("MainWindow/state", saveState());
+    settings.setValue("MainWindow/lastWorld", m_world->dir());
 }
 
 void MainWindow::changeWindowTitle() {
@@ -101,4 +101,12 @@ void MainWindow::createActions() {
 
     auto helpMenu = menuBar()->addMenu(tr("Help"));
     helpMenu->addAction(tr("About %1...").arg(Application::Name), this, &MainWindow::showAbout);
+}
+
+void MainWindow::openWorld(const QString& dir) {
+    if (dir.isEmpty()) return;
+    if (!QDir().exists(dir)) return;
+
+    m_world->open(dir);
+    changeWindowTitle();
 }

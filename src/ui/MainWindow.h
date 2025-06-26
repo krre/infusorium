@@ -25,5 +25,7 @@ private:
     void changeWindowTitle();
     void createActions();
 
+    void openWorld(const QString& dir);
+
     World* m_world = nullptr;
 };
