@@ -2,6 +2,7 @@
 #include "core/Application.h"
 #include "dialog/NewWorld.h"
 #include "world/World.h"
+#include "settings/FileSettings.h"
 #include <QMenuBar>
 #include <QMessageBox>
 #include <QCoreApplication>
@@ -10,6 +11,7 @@
 #include <QFileDialog>
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
+    m_fileSettings = new FileSettings(this);
     m_world = new World(this);
     changeWindowTitle();
     createActions();
@@ -53,8 +55,7 @@ Copyright © %7, Vladimir Zarypov)")
 }
 
 void MainWindow::readSettings() {
-    QSettings settings;
-    QByteArray geometry = settings.value("MainWindow/geometry").toByteArray();
+    QByteArray geometry = m_fileSettings->mainWindowGeometry();
 
     if (!geometry.isEmpty()) {
         restoreGeometry(geometry);
@@ -64,17 +65,14 @@ void MainWindow::readSettings() {
         move((availableGeometry.width() - width()) / 2, (availableGeometry.height() - height()) / 2);
     }
 
-    restoreState(settings.value("MainWindow/state").toByteArray());
-
-    QString lastWorld = settings.value("MainWindow/lastWorld").toString();
-    openWorld(lastWorld);
+    restoreState(m_fileSettings->mainWindowState());
+    openWorld(m_fileSettings->mainWindowLastWorld());
 }
 
 void MainWindow::writeSettings() {
-    QSettings settings;
-    settings.setValue("MainWindow/geometry", saveGeometry());
-    settings.setValue("MainWindow/state", saveState());
-    settings.setValue("MainWindow/lastWorld", m_world->dir());
+    m_fileSettings->setMainWindowGeometry(saveGeometry());
+    m_fileSettings->setMainWindowState(saveState());
+    m_fileSettings->setMainWindowLastWorld(m_world->dir());
 }
 
 void MainWindow::changeWindowTitle() {

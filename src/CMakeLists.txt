@@ -7,6 +7,7 @@ add_library(common STATIC
     ui/dialog/StandardDialog.cpp ui/dialog/StandardDialog.h
     ui/dialog/NewWorld.h ui/dialog/NewWorld.cpp
     ui/widget/BrowseLayout.cpp ui/widget/BrowseLayout.h
+    settings/FileSettings.cpp settings/FileSettings.h settings/Settings.cpp settings/Settings.h
 )
 
 # For visibility in IDE (e.g., Qt Creator)

@@ -1,6 +1,7 @@
 #pragma once
 #include <QMainWindow>
 
+class FileSettings;
 class World;
 
 class MainWindow : public QMainWindow {
@@ -27,5 +28,6 @@ private:
 
     void openWorld(const QString& dir);
 
+    FileSettings* m_fileSettings = nullptr;
     World* m_world = nullptr;
 };
