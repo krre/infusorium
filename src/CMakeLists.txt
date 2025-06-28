@@ -8,6 +8,7 @@ add_library(common STATIC
     ui/dialog/StandardDialog.cpp ui/dialog/StandardDialog.h
     ui/widget/BrowseLayout.cpp ui/widget/BrowseLayout.h
     world/World.h world/World.cpp
+    ui/WorldController.h ui/WorldController.cpp
 )
 
 # For visibility in IDE (e.g., Qt Creator)

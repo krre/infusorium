@@ -1,4 +1,5 @@
 #include "MainWindow.h"
+#include "WorldController.h"
 #include "core/Application.h"
 #include "dialog/NewWorld.h"
 #include "world/World.h"
@@ -12,7 +13,6 @@
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     m_fileSettings = new FileSettings(this);
-    m_world = new World(this);
     changeWindowTitle();
     createActions();
     readSettings();
@@ -27,7 +27,8 @@ void MainWindow::create() {
     NewWorld newWorld;
 
     if (newWorld.exec() == QDialog::Accepted) {
-        m_world->create(newWorld.name(), newWorld.directory(), newWorld.age());
+        m_worldController = new WorldController(newWorld.name(), newWorld.directory(), newWorld.age());
+        emit worldOpenChanged(true);
         changeWindowTitle();
     }
 }
@@ -35,11 +36,13 @@ void MainWindow::create() {
 void MainWindow::open() {
     QString dir = QFileDialog::getExistingDirectory(this, tr("Open World"));
     openWorld(dir);
-    emit worldOpenChanged(true);
 }
 
 void MainWindow::close() {
-    m_world->close();
+    setCentralWidget(nullptr);
+    delete m_worldController;
+    m_worldController = nullptr;
+
     changeWindowTitle();
     emit worldOpenChanged(false);
 }
@@ -74,14 +77,14 @@ void MainWindow::readSettings() {
 void MainWindow::writeSettings() {
     m_fileSettings->setMainWindowGeometry(saveGeometry());
     m_fileSettings->setMainWindowState(saveState());
-    m_fileSettings->setMainWindowLastWorld(m_world->dir());
+    m_fileSettings->setMainWindowLastWorld(m_worldController->world()->dir());
 }
 
 void MainWindow::changeWindowTitle() {
     QString title = Application::applicationName();
 
-    if (!m_world->name().isEmpty()) {
-        title = m_world->name() + " - " + title;
+    if (m_worldController) {
+        title = m_worldController->world()->name() + " - " + title;
     }
 
     setWindowTitle(title);
@@ -99,18 +102,21 @@ void MainWindow::createActions() {
     fileMenu->addSeparator();
     fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, this, &QMainWindow::close);
 
-    auto worldMenu = menuBar()->addMenu(tr("World"));
-    worldMenu->addAction(tr("Run"), m_world, &World::run);
-    worldMenu->addAction(tr("Stop"), m_world, &World::stop);
+    // auto worldMenu = menuBar()->addMenu(tr("World"));
+    // worldMenu->addAction(tr("Run"), m_world, &World::run);
+    // worldMenu->addAction(tr("Stop"), m_world, &World::stop);
 
     auto helpMenu = menuBar()->addMenu(tr("Help"));
     helpMenu->addAction(tr("About %1...").arg(Application::Name), this, &MainWindow::showAbout);
 }
 
 void MainWindow::openWorld(const QString& dir) {
+    close();
+
     if (dir.isEmpty()) return;
     if (!QDir().exists(dir)) return;
 
-    m_world->open(dir);
+    m_worldController = new WorldController(dir);
+    emit worldOpenChanged(true);
     changeWindowTitle();
 }
