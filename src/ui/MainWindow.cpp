@@ -35,11 +35,13 @@ void MainWindow::create() {
 void MainWindow::open() {
     QString dir = QFileDialog::getExistingDirectory(this, tr("Open World"));
     openWorld(dir);
+    emit worldOpenChanged(true);
 }
 
 void MainWindow::close() {
     m_world->close();
     changeWindowTitle();
+    emit worldOpenChanged(false);
 }
 
 void MainWindow::showAbout() {
@@ -89,7 +91,11 @@ void MainWindow::createActions() {
     auto fileMenu = menuBar()->addMenu(tr("File"));
     fileMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &MainWindow::create);
     fileMenu->addAction(tr("Open..."), Qt::CTRL | Qt::Key_O, this, &MainWindow::open);
-    fileMenu->addAction(tr("Close"), Qt::CTRL | Qt::Key_W, this, &MainWindow::close);
+
+    auto closeAction = fileMenu->addAction(tr("Close"), Qt::CTRL | Qt::Key_W, this, &MainWindow::close);
+    closeAction->setEnabled(false);
+    connect(this, &MainWindow::worldOpenChanged, closeAction, &QAction::setEnabled);
+
     fileMenu->addSeparator();
     fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, this, &QMainWindow::close);
 

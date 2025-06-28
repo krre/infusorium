@@ -5,9 +5,12 @@ class FileSettings;
 class World;
 
 class MainWindow : public QMainWindow {
-
+    Q_OBJECT
 public:
     MainWindow(QWidget* parent = nullptr);
+
+signals:
+    void worldOpenChanged(bool open);
 
 protected:
     void closeEvent(QCloseEvent* event) override;
