@@ -2,12 +2,12 @@ configure_file(config.h.in config.h @ONLY)
 
 add_library(common STATIC
     core/Application.cpp core/Application.h
-    ui/MainWindow.cpp ui/MainWindow.h
-    world/World.h world/World.cpp
-    ui/dialog/StandardDialog.cpp ui/dialog/StandardDialog.h
-    ui/dialog/NewWorld.h ui/dialog/NewWorld.cpp
-    ui/widget/BrowseLayout.cpp ui/widget/BrowseLayout.h
     settings/FileSettings.cpp settings/FileSettings.h settings/Settings.cpp settings/Settings.h
+    ui/MainWindow.cpp ui/MainWindow.h
+    ui/dialog/NewWorld.h ui/dialog/NewWorld.cpp
+    ui/dialog/StandardDialog.cpp ui/dialog/StandardDialog.h
+    ui/widget/BrowseLayout.cpp ui/widget/BrowseLayout.h
+    world/World.h world/World.cpp
 )
 
 # For visibility in IDE (e.g., Qt Creator)
