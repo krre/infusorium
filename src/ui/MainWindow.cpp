@@ -102,9 +102,29 @@ void MainWindow::createActions() {
     fileMenu->addSeparator();
     fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, this, &QMainWindow::close);
 
-    // auto worldMenu = menuBar()->addMenu(tr("World"));
-    // worldMenu->addAction(tr("Run"), m_world, &World::run);
-    // worldMenu->addAction(tr("Stop"), m_world, &World::stop);
+    auto worldMenu = menuBar()->addMenu(tr("World"));
+
+    auto runWorldAction = worldMenu->addAction(tr("Run"));
+    runWorldAction->setEnabled(false);
+
+    connect(this, &MainWindow::worldOpenChanged, this, [=, this] (bool open) {
+        runWorldAction->setEnabled(open);
+
+        if (open) {
+            connect(runWorldAction, &QAction::triggered, m_worldController->world(), &World::run);
+        }
+    });
+
+    auto stopWorldAction = worldMenu->addAction(tr("Stop"));
+    stopWorldAction->setEnabled(false);
+
+    connect(this, &MainWindow::worldOpenChanged, this, [=, this] (bool open) {
+        stopWorldAction->setEnabled(open);
+
+        if (open) {
+            connect(stopWorldAction, &QAction::triggered, m_worldController->world(), &World::stop);
+        }
+    });
 
     auto helpMenu = menuBar()->addMenu(tr("Help"));
     helpMenu->addAction(tr("About %1...").arg(Application::Name), this, &MainWindow::showAbout);

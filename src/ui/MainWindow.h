@@ -4,6 +4,8 @@
 class FileSettings;
 class WorldController;
 
+class QAction;
+
 class MainWindow : public QMainWindow {
     Q_OBJECT
 public:
