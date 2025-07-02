@@ -31,6 +31,7 @@ void World::open(const QString& directory) {
 void World::close() {
     m_name.clear();
     m_age = 0;
+    m_today = 0;
 }
 
 bool World::isRunning() const {
@@ -92,6 +93,7 @@ QByteArray World::toJson() const {
     QJsonObject world;
     world["name"] = m_name;
     world["age"] = int(m_age);
+    world["today"] = int(m_today);
 
     return QJsonDocument(world).toJson();
 }
@@ -100,4 +102,5 @@ void World::fromJson(const QByteArray& json) {
     QJsonObject world = QJsonDocument::fromJson(json).object();
     m_name = world["name"].toString();
     m_age = world["age"].toInt();
+    m_today = world["today"].toInt();
 }

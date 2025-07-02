@@ -24,6 +24,7 @@ void WorldController::createWidgets() {
     auto ageSlider = new QSlider(this);
     ageSlider->setOrientation(Qt::Horizontal);
     ageSlider->setMaximum(m_world->age());
+    ageSlider->setValue(m_world->today());
 
     auto ageSpinBox = new QSpinBox;
     ageSpinBox->setReadOnly(true);
