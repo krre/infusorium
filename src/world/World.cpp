@@ -2,7 +2,6 @@
 #include <QTimer>
 #include <QDir>
 #include <QJsonObject>
-#include <QDebug>
 
 World::World(QObject* parent) : QObject(parent) {
     m_timer = new QTimer(this);
@@ -62,7 +61,6 @@ void World::run() {
     m_timer->start();
     m_running = true;
     runningChanged(true);
-    qDebug() << "Run World";
 }
 
 void World::stop() {
@@ -71,7 +69,6 @@ void World::stop() {
     m_timer->stop();
     m_running = false;
     runningChanged(false);
-    qDebug() << "Stop World";
 }
 
 void World::advance() {
