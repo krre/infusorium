@@ -1,6 +1,8 @@
 #pragma once
 #include <QObject>
 
+class QTimer;
+
 class World : public QObject {
     Q_OBJECT
 public:
@@ -11,6 +13,7 @@ public:
     void close();
 
     bool isRunning() const;
+    quint32 today() const;
 
     QString name() const;
     quint32 age() const;
@@ -23,6 +26,10 @@ public slots:
 
 signals:
     void runningChanged(bool running);
+    void todayChanged(quint32 today);
+
+private slots:
+    void advance();
 
 private:
     void createFiles();
@@ -31,6 +38,8 @@ private:
     QString m_name;
     QString m_dir;
     quint32 m_age = 0;
+    quint32 m_today = 0;
 
     bool m_running = false;
+    QTimer* m_timer = nullptr;
 };

@@ -29,6 +29,7 @@ void WorldController::createWidgets() {
     ageSpinBox->setReadOnly(true);
 
     connect(ageSlider, &QSlider::valueChanged, ageSpinBox, &QSpinBox::setValue);
+    connect(m_world, &World::todayChanged, ageSlider, &QSlider::setValue);
 
     auto ageLayout = new QHBoxLayout;
     ageLayout->addWidget(ageSlider, 1);

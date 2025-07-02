@@ -1,10 +1,13 @@
 #include "World.h"
+#include <QTimer>
 #include <QDir>
 #include <QJsonObject>
 #include <QDebug>
 
 World::World(QObject* parent) : QObject(parent) {
-
+    m_timer = new QTimer(this);
+    m_timer->setInterval(1000);
+    connect(m_timer, &QTimer::timeout, this, &World::advance);
 }
 
 void World::create(const QString& name, const QString& directory, quint32 age) {
@@ -37,6 +40,10 @@ bool World::isRunning() const {
     return m_running;
 }
 
+quint32 World::today() const {
+    return m_today;
+}
+
 QString World::name() const {
     return m_name;
 }
@@ -51,6 +58,8 @@ QString World::dir() const {
 
 void World::run() {
     if (m_running) return;
+
+    m_timer->start();
     m_running = true;
     runningChanged(true);
     qDebug() << "Run World";
@@ -58,9 +67,20 @@ void World::run() {
 
 void World::stop() {
     if (!m_running) return;
+
+    m_timer->stop();
     m_running = false;
     runningChanged(false);
     qDebug() << "Stop World";
+}
+
+void World::advance() {
+    m_today += 1;
+    emit todayChanged(m_today);
+
+    if (m_today == m_age) {
+        stop();
+    }
 }
 
 void World::createFiles() {
