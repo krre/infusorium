@@ -60,7 +60,7 @@ void World::run() {
 
     m_timer->start();
     m_running = true;
-    runningChanged(true);
+    emit runningChanged(true);
 }
 
 void World::stop() {
@@ -68,7 +68,7 @@ void World::stop() {
 
     m_timer->stop();
     m_running = false;
-    runningChanged(false);
+    emit runningChanged(false);
 }
 
 void World::advance() {
