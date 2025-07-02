@@ -112,11 +112,14 @@ void MainWindow::createActions() {
 
     connect(this, &MainWindow::worldOpenChanged, this, [=, this] (bool open) {
         runWorldAction->setEnabled(open);
-        stopWorldAction->setEnabled(open);
 
         if (open) {
             connect(runWorldAction, &QAction::triggered, m_worldController->world(), &World::run);
             connect(stopWorldAction, &QAction::triggered, m_worldController->world(), &World::stop);
+            connect(m_worldController->world(), &World::runningChanged, this, [=] (bool running) {
+                runWorldAction->setEnabled(!running);
+                stopWorldAction->setEnabled(running);
+            });
         }
     });
 

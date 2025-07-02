@@ -2,6 +2,7 @@
 #include <QObject>
 
 class World : public QObject {
+    Q_OBJECT
 public:
     World(QObject* parent);
 
@@ -19,6 +20,9 @@ public:
 public slots:
     void run();
     void stop();
+
+signals:
+    void runningChanged(bool running);
 
 private:
     void createFiles();

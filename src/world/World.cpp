@@ -52,12 +52,14 @@ QString World::dir() const {
 void World::run() {
     if (m_running) return;
     m_running = true;
+    runningChanged(true);
     qDebug() << "Run World";
 }
 
 void World::stop() {
     if (!m_running) return;
     m_running = false;
+    runningChanged(false);
     qDebug() << "Stop World";
 }
 
