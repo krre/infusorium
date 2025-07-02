@@ -12,5 +12,7 @@ public:
     World* world() const;
 
 private:
+    void createWidgets();
+
     World* m_world = nullptr;
 };
