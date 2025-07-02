@@ -107,21 +107,15 @@ void MainWindow::createActions() {
     auto runWorldAction = worldMenu->addAction(tr("Run"));
     runWorldAction->setEnabled(false);
 
-    connect(this, &MainWindow::worldOpenChanged, this, [=, this] (bool open) {
-        runWorldAction->setEnabled(open);
-
-        if (open) {
-            connect(runWorldAction, &QAction::triggered, m_worldController->world(), &World::run);
-        }
-    });
-
     auto stopWorldAction = worldMenu->addAction(tr("Stop"));
     stopWorldAction->setEnabled(false);
 
     connect(this, &MainWindow::worldOpenChanged, this, [=, this] (bool open) {
+        runWorldAction->setEnabled(open);
         stopWorldAction->setEnabled(open);
 
         if (open) {
+            connect(runWorldAction, &QAction::triggered, m_worldController->world(), &World::run);
             connect(stopWorldAction, &QAction::triggered, m_worldController->world(), &World::stop);
         }
     });
