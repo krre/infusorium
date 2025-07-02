@@ -28,6 +28,7 @@ void MainWindow::create() {
 
     if (newWorld.exec() == QDialog::Accepted) {
         m_worldController = new WorldController(newWorld.name(), newWorld.directory(), newWorld.age());
+        setCentralWidget(m_worldController);
         emit worldOpenChanged(true);
         changeWindowTitle();
     }
@@ -134,6 +135,7 @@ void MainWindow::openWorld(const QString& dir) {
     if (!QDir().exists(dir)) return;
 
     m_worldController = new WorldController(dir);
+    setCentralWidget(m_worldController);
     emit worldOpenChanged(true);
     changeWindowTitle();
 }
