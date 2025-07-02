@@ -25,9 +25,7 @@ void World::open(const QString& directory) {
     QFile file(worldFilePath());
     file.open(QIODeviceBase::ReadOnly);
 
-    QJsonObject world = QJsonDocument::fromJson(file.readAll()).object();
-    m_name = world["name"].toString();
-    m_age = world["age"].toInt();
+    fromJson(file.readAll());
 }
 
 void World::close() {
@@ -81,15 +79,25 @@ void World::advance() {
 }
 
 void World::createFiles() {
-    QJsonObject world;
-    world["name"] = m_name;
-    world["age"] = int(m_age);
-
     QFile file(worldFilePath());
     file.open(QIODeviceBase::WriteOnly);
-    file.write(QJsonDocument(world).toJson());
+    file.write(toJson());
 }
 
 QString World::worldFilePath() const {
     return m_dir + "/world.json";
+}
+
+QByteArray World::toJson() const {
+    QJsonObject world;
+    world["name"] = m_name;
+    world["age"] = int(m_age);
+
+    return QJsonDocument(world).toJson();
+}
+
+void World::fromJson(const QByteArray& json) {
+    QJsonObject world = QJsonDocument::fromJson(json).object();
+    m_name = world["name"].toString();
+    m_age = world["age"].toInt();
 }

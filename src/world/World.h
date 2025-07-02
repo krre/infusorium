@@ -35,6 +35,9 @@ private:
     void createFiles();
     QString worldFilePath() const;
 
+    QByteArray toJson() const;
+    void fromJson(const QByteArray& json);
+
     QString m_name;
     QString m_dir;
     quint32 m_age = 0;
