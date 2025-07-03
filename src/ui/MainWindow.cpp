@@ -80,6 +80,8 @@ void MainWindow::writeSettings() {
     m_fileSettings->setMainWindowGeometry(saveGeometry());
     m_fileSettings->setMainWindowState(saveState());
     m_fileSettings->setMainWindowLastWorld(m_worldController->world()->dir());
+
+    m_fileSettings->setRecentWorlds(m_recentWorldsMenu->recentWorlds());
 }
 
 void MainWindow::changeWindowTitle() {
@@ -97,7 +99,7 @@ void MainWindow::createActions() {
     fileMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &MainWindow::create);
     fileMenu->addAction(tr("Open..."), Qt::CTRL | Qt::Key_O, this, &MainWindow::open);
 
-    m_recentWorldsMenu = new RecentWorldsMenu(QStringList(), this);
+    m_recentWorldsMenu = new RecentWorldsMenu(m_fileSettings->recentWorlds(), this);
     connect(m_recentWorldsMenu, &RecentWorldsMenu::activated, this, &MainWindow::openWorld);
     fileMenu->addAction(m_recentWorldsMenu->menuAction());
 

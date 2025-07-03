@@ -6,6 +6,10 @@ namespace MainWindow {
     constexpr auto LastWorld = "MainWindow/lastWorld";
 }
 
+namespace RecentWorlds {
+    constexpr auto Dir = "RecentWorlds/dir";
+}
+
 void Settings::setMainWindowGeometry(const QByteArray& geometry) {
     setValue(MainWindow::Geometry, geometry);
 }
@@ -28,4 +32,25 @@ void Settings::setMainWindowLastWorld(const QString& lastWorld) {
 
 QString Settings::mainWindowLastWorld() const {
     return value(MainWindow::LastWorld).toString();
+}
+
+void Settings::setRecentWorlds(const QStringList& recentWorlds) {
+    QVariantList list;
+
+    for (const auto& dir : recentWorlds) {
+        list.append(dir);
+    }
+
+    setList(RecentWorlds::Dir, list);
+}
+
+QStringList Settings::recentWorlds() const {
+    QStringList result;
+    const QVariantList recentFiles = list(RecentWorlds::Dir);
+
+    for (const auto& value : recentFiles) {
+        result.append(value.toString());
+    }
+
+    return result;
 }

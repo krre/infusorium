@@ -14,6 +14,9 @@ public:
     void setMainWindowLastWorld(const QString& lastWorld);
     QString mainWindowLastWorld() const;
 
+    void setRecentWorlds(const QStringList& recentWorlds);
+    QStringList recentWorlds() const;
+
 protected:
     virtual void setValue(const QString& key, const QVariant& value) = 0;
     virtual QVariant value(const QString& key, const QVariant& defaultValue = QVariant()) const = 0;
