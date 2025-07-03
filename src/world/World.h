@@ -7,6 +7,7 @@ class World : public QObject {
     Q_OBJECT
 public:
     World(QObject* parent);
+    ~World();
 
     void create(const QString& name, const QString& directory, quint32 age);
     void open(const QString& directory);
@@ -32,7 +33,7 @@ private slots:
     void advance();
 
 private:
-    void createFiles();
+    void save() const;
     QString worldFilePath() const;
 
     QByteArray toJson() const;

@@ -9,13 +9,17 @@ World::World(QObject* parent) : QObject(parent) {
     connect(m_timer, &QTimer::timeout, this, &World::advance);
 }
 
+World::~World() {
+    stop();
+}
+
 void World::create(const QString& name, const QString& directory, quint32 age) {
     m_name = name;
     m_dir = directory + "/" + name;
     m_age = age;
 
     QDir().mkpath(m_dir);
-    createFiles();
+    save();
     open(m_dir);
 }
 
@@ -67,6 +71,7 @@ void World::stop() {
 
     m_timer->stop();
     m_running = false;
+    save();
     emit runningChanged(false);
 }
 
@@ -79,7 +84,7 @@ void World::advance() {
     }
 }
 
-void World::createFiles() {
+void World::save() const {
     QFile file(worldFilePath());
     file.open(QIODeviceBase::WriteOnly);
     file.write(toJson());
