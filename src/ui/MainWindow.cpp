@@ -112,7 +112,7 @@ void MainWindow::createActions() {
     stopWorldAction->setEnabled(false);
 
     connect(this, &MainWindow::worldOpenChanged, this, [=, this] (bool open) {
-        runWorldAction->setEnabled(open);
+        runWorldAction->setEnabled(open && m_worldController->world()->today() < m_worldController->world()->age());
 
         if (open) {
             connect(runWorldAction, &QAction::triggered, m_worldController->world(), &World::run);
