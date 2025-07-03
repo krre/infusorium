@@ -28,6 +28,7 @@ void WorldController::createWidgets() {
 
     auto ageSpinBox = new QSpinBox;
     ageSpinBox->setReadOnly(true);
+    ageSpinBox->setValue(m_world->today());
 
     connect(ageSlider, &QSlider::valueChanged, ageSpinBox, &QSpinBox::setValue);
     connect(m_world, &World::todayChanged, ageSlider, &QSlider::setValue);
