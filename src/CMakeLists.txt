@@ -9,6 +9,7 @@ add_library(common STATIC
     ui/widget/BrowseLayout.cpp ui/widget/BrowseLayout.h
     world/World.h world/World.cpp
     ui/WorldController.h ui/WorldController.cpp
+    ui/widget/AutomaticSlider.h ui/widget/AutomaticSlider.cpp
 )
 
 # For visibility in IDE (e.g., Qt Creator)

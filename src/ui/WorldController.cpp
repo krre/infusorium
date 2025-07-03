@@ -1,6 +1,6 @@
 #include "WorldController.h"
+#include "widget/AutomaticSlider.h"
 #include "world/World.h"
-#include <QSlider>
 #include <QSpinBox>
 #include <QVBoxLayout>
 
@@ -21,7 +21,7 @@ World* WorldController::world() const {
 }
 
 void WorldController::createWidgets() {
-    auto ageSlider = new QSlider(this);
+    auto ageSlider = new AutomaticSlider;
     ageSlider->setOrientation(Qt::Horizontal);
     ageSlider->setMaximum(m_world->age());
     ageSlider->setValue(m_world->today());
