@@ -1,4 +1,5 @@
 #include "MainWindow.h"
+#include "RecentWorldsMenu.h"
 #include "WorldController.h"
 #include "core/Application.h"
 #include "dialog/NewWorld.h"
@@ -96,6 +97,10 @@ void MainWindow::createActions() {
     fileMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &MainWindow::create);
     fileMenu->addAction(tr("Open..."), Qt::CTRL | Qt::Key_O, this, &MainWindow::open);
 
+    m_recentWorldsMenu = new RecentWorldsMenu(QStringList(), this);
+    connect(m_recentWorldsMenu, &RecentWorldsMenu::activated, this, &MainWindow::openWorld);
+    fileMenu->addAction(m_recentWorldsMenu->menuAction());
+
     auto closeAction = fileMenu->addAction(tr("Close"), Qt::CTRL | Qt::Key_W, this, &MainWindow::close);
     closeAction->setEnabled(false);
     connect(this, &MainWindow::worldOpenChanged, closeAction, &QAction::setEnabled);
@@ -143,6 +148,7 @@ void MainWindow::openWorld(const QString& dir) {
 
     m_worldController = new WorldController(dir);
     setCentralWidget(m_worldController);
+    m_recentWorldsMenu->addDir(dir);
     emit worldOpenChanged(true);
     changeWindowTitle();
 }

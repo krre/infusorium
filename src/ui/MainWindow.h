@@ -2,6 +2,7 @@
 #include <QMainWindow>
 
 class FileSettings;
+class RecentWorldsMenu;
 class WorldController;
 
 class QAction;
@@ -22,6 +23,7 @@ private slots:
     void open();
     void close();
 
+    void openWorld(const QString& dir);
     void showAbout();
 
 private:
@@ -31,9 +33,9 @@ private:
     void changeWindowTitle();
     void createActions();
 
-    void openWorld(const QString& dir);
     void resetWorld();
 
     FileSettings* m_fileSettings = nullptr;
+    RecentWorldsMenu* m_recentWorldsMenu = nullptr;
     WorldController* m_worldController = nullptr;
 };
