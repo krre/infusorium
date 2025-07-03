@@ -38,6 +38,12 @@ void World::close() {
     m_today = 0;
 }
 
+void World::reset() {
+    m_today = 0;
+    save();
+    emit todayChanged(m_today);
+}
+
 bool World::isRunning() const {
     return m_running;
 }

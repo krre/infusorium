@@ -12,6 +12,7 @@ public:
     void create(const QString& name, const QString& directory, quint32 age);
     void open(const QString& directory);
     void close();
+    void reset();
 
     bool isRunning() const;
     quint32 today() const;

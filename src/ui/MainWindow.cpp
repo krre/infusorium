@@ -111,15 +111,22 @@ void MainWindow::createActions() {
     auto stopWorldAction = worldMenu->addAction(tr("Stop"));
     stopWorldAction->setEnabled(false);
 
+    auto resetWorldAction = worldMenu->addAction(tr("Reset"));
+    resetWorldAction->setEnabled(false);
+
     connect(this, &MainWindow::worldOpenChanged, this, [=, this] (bool open) {
         runWorldAction->setEnabled(open && m_worldController->world()->today() < m_worldController->world()->age());
+        resetWorldAction->setEnabled(open && !stopWorldAction->isEnabled());
 
         if (open) {
             connect(runWorldAction, &QAction::triggered, m_worldController->world(), &World::run);
             connect(stopWorldAction, &QAction::triggered, m_worldController->world(), &World::stop);
+            connect(resetWorldAction, &QAction::triggered, this, &MainWindow::resetWorld);
+
             connect(m_worldController->world(), &World::runningChanged, this, [=] (bool running) {
                 runWorldAction->setEnabled(!running);
                 stopWorldAction->setEnabled(running);
+                resetWorldAction->setEnabled(!running);
             });
         }
     });
@@ -138,4 +145,10 @@ void MainWindow::openWorld(const QString& dir) {
     setCentralWidget(m_worldController);
     emit worldOpenChanged(true);
     changeWindowTitle();
+}
+
+void MainWindow::resetWorld() {
+    if (QMessageBox::question(this, QString(), tr("Confirm to reset world"))) {
+        m_worldController->world()->reset();
+    }
 }

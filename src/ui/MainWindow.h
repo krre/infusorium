@@ -32,6 +32,7 @@ private:
     void createActions();
 
     void openWorld(const QString& dir);
+    void resetWorld();
 
     FileSettings* m_fileSettings = nullptr;
     WorldController* m_worldController = nullptr;
