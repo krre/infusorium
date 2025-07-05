@@ -4,6 +4,7 @@
 #include "core/Application.h"
 #include "core/Utils.h"
 #include "dialog/NewWorld.h"
+#include "dialog/Preferences.h"
 #include "world/World.h"
 #include "settings/FileSettings.h"
 #include <QMenuBar>
@@ -111,6 +112,9 @@ void MainWindow::createActions() {
     fileMenu->addSeparator();
     fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, this, &QMainWindow::close);
 
+    auto editMenu = menuBar()->addMenu(tr("Edit"));
+    editMenu->addAction(tr("Preferences..."), this, &MainWindow::showPreferences);
+
     auto worldMenu = menuBar()->addMenu(tr("World"));
 
     auto runWorldAction = worldMenu->addAction(tr("Run"));
@@ -154,6 +158,11 @@ void MainWindow::openWorld(const QString& dir) {
     m_recentWorldsMenu->addDir(dir);
     emit worldOpenChanged(true);
     changeWindowTitle();
+}
+
+void MainWindow::showPreferences() {
+    Preferences preferences(m_fileSettings);
+    preferences.exec();
 }
 
 void MainWindow::resetWorld() {

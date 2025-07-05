@@ -12,6 +12,7 @@ add_library(common STATIC
     ui/widget/AutomaticSlider.h ui/widget/AutomaticSlider.cpp
     ui/RecentWorldsMenu.cpp ui/RecentWorldsMenu.h
     core/Utils.h core/Utils.cpp
+    ui/dialog/Preferences.h ui/dialog/Preferences.cpp
 )
 
 # For visibility in IDE (e.g., Qt Creator)

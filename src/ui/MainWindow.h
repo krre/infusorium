@@ -24,6 +24,8 @@ private slots:
     void close();
 
     void openWorld(const QString& dir);
+
+    void showPreferences();
     void showAbout();
 
 private:
