@@ -2,6 +2,7 @@
 #include "StandardDialog.h"
 
 class Settings;
+class QLineEdit;
 
 class Preferences : public StandardDialog {
     Q_OBJECT
@@ -16,4 +17,5 @@ private:
     void writeSettings();
 
     Settings* m_settings = nullptr;
+    QLineEdit* m_worldDirLineEdit = nullptr;
 };

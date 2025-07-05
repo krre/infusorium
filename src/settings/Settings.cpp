@@ -1,4 +1,5 @@
 #include "Settings.h"
+#include "core/Utils.h"
 
 namespace MainWindow {
     constexpr auto Geometry = "MainWindow/geometry";
@@ -8,6 +9,10 @@ namespace MainWindow {
 
 namespace RecentWorlds {
     constexpr auto Dir = "RecentWorlds/dir";
+}
+
+namespace World {
+    constexpr auto WorkDirectory = "World/workDirectory";
 }
 
 void Settings::setMainWindowGeometry(const QByteArray& geometry) {
@@ -53,4 +58,12 @@ QStringList Settings::recentWorlds() const {
     }
 
     return result;
+}
+
+void Settings::setWorldWorkDirectory(const QString& workDirectory) {
+    setValue(World::WorkDirectory, workDirectory);
+}
+
+QString Settings::worldWorkDirectory() const {
+    return value(World::WorkDirectory, Utils::workDir()).toString();
 }

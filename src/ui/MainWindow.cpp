@@ -27,7 +27,7 @@ void MainWindow::closeEvent(QCloseEvent* event) {
 }
 
 void MainWindow::create() {
-    NewWorld newWorld;
+    NewWorld newWorld(m_fileSettings->worldWorkDirectory());
 
     if (newWorld.exec() == QDialog::Accepted) {
         m_worldController = new WorldController(newWorld.name(), newWorld.directory(), newWorld.age());

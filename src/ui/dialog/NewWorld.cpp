@@ -1,6 +1,5 @@
 #include "NewWorld.h"
 #include "ui/widget/BrowseLayout.h"
-#include "core/Utils.h"
 #include <QLineEdit>
 #include <QIntValidator>
 #include <QFormLayout>
@@ -9,13 +8,13 @@
 #include <QMessageBox>
 #include <QDir>
 
-NewWorld::NewWorld() {
+NewWorld::NewWorld(const QString& workDir) {
     setWindowTitle(tr("New World"));
 
     m_nameLineEdit = new QLineEdit;
     connect(m_nameLineEdit, &QLineEdit::textChanged, this, &NewWorld::setOkButtonState);
 
-    m_directoryBrowseLayout = new BrowseLayout(Utils::workDir());
+    m_directoryBrowseLayout = new BrowseLayout(workDir);
     connect(m_directoryBrowseLayout->lineEdit(), &QLineEdit::textChanged, this, &NewWorld::setOkButtonState);
 
     m_ageLineEdit = new QLineEdit;
