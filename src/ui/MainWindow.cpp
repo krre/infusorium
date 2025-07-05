@@ -2,6 +2,7 @@
 #include "RecentWorldsMenu.h"
 #include "WorldController.h"
 #include "core/Application.h"
+#include "core/Utils.h"
 #include "dialog/NewWorld.h"
 #include "world/World.h"
 #include "settings/FileSettings.h"
@@ -36,7 +37,7 @@ void MainWindow::create() {
 }
 
 void MainWindow::open() {
-    QString dir = QFileDialog::getExistingDirectory(this, tr("Open World"));
+    QString dir = QFileDialog::getExistingDirectory(this, tr("Open World"), Utils::workDir());
     openWorld(dir);
 }
 

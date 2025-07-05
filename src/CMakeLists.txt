@@ -11,6 +11,7 @@ add_library(common STATIC
     ui/WorldController.h ui/WorldController.cpp
     ui/widget/AutomaticSlider.h ui/widget/AutomaticSlider.cpp
     ui/RecentWorldsMenu.cpp ui/RecentWorldsMenu.h
+    core/Utils.h core/Utils.cpp
 )
 
 # For visibility in IDE (e.g., Qt Creator)
