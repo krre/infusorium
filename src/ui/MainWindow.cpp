@@ -32,6 +32,7 @@ void MainWindow::create() {
     if (newWorld.exec() == QDialog::Accepted) {
         m_worldController = new WorldController(newWorld.name(), newWorld.directory(), newWorld.age());
         setCentralWidget(m_worldController);
+        m_recentWorldsMenu->addDir(m_worldController->world()->dir());
         emit worldOpenChanged(true);
         changeWindowTitle();
     }
