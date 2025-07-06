@@ -14,10 +14,10 @@ Preferences::Preferences(Settings* settings) : m_settings(settings) {
     auto worldLayout = new QFormLayout;
     worldLayout->addRow(tr("Work directory:"), workDirLayout);
 
-    auto uiGroupBox = new QGroupBox(tr("World"));
-    uiGroupBox->setLayout(worldLayout);
+    auto worldGroupBox = new QGroupBox(tr("World"));
+    worldGroupBox->setLayout(worldLayout);
 
-    setContentWidget(uiGroupBox);
+    setContentWidget(worldGroupBox);
 
     resizeToWidth(500);
     readSettings();
