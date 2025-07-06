@@ -9,7 +9,7 @@ Preferences::Preferences(Settings* settings) : m_settings(settings) {
     setWindowTitle(tr("Preferences"));
 
     auto workDirLayout = new BrowseLayout(settings->worldWorkDirectory());
-    m_worldDirLineEdit = workDirLayout->lineEdit();
+    m_workDirLineEdit = workDirLayout->lineEdit();
 
     auto worldLayout = new QFormLayout;
     worldLayout->addRow(tr("Work directory:"), workDirLayout);
@@ -32,5 +32,5 @@ void Preferences::readSettings() {
 }
 
 void Preferences::writeSettings() {
-    m_settings->setWorldWorkDirectory(m_worldDirLineEdit->text());
+    m_settings->setWorldWorkDirectory(m_workDirLineEdit->text());
 }

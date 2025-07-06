@@ -17,5 +17,5 @@ private:
     void writeSettings();
 
     Settings* m_settings = nullptr;
-    QLineEdit* m_worldDirLineEdit = nullptr;
+    QLineEdit* m_workDirLineEdit = nullptr;
 };
