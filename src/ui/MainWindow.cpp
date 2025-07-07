@@ -39,7 +39,7 @@ void MainWindow::create() {
 }
 
 void MainWindow::open() {
-    QString dir = QFileDialog::getExistingDirectory(this, tr("Open World"), Utils::workDir());
+    QString dir = QFileDialog::getExistingDirectory(this, tr("Open World"), m_fileSettings->worldWorkDirectory());
     openWorld(dir);
 }
 
