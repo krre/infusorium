@@ -14,6 +14,7 @@ add_library(common STATIC
     core/Utils.h core/Utils.cpp
     ui/dialog/Preferences.h ui/dialog/Preferences.cpp
     database/Database.cpp database/Database.h
+    database/Migrater.cpp database/Migrater.h
 )
 
 # For visibility in IDE (e.g., Qt Creator)

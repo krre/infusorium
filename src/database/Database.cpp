@@ -1,4 +1,5 @@
 #include "Database.h"
+#include "Migrater.h"
 #include <QSqlQuery>
 #include <QSqlError>
 
@@ -23,6 +24,9 @@ void Database::open(const QString& filePath) {
     if (!m_db.open()) {
         throw std::runtime_error(m_db.lastError().text().toStdString());
     }
+
+    Migrater migrater(this);
+    migrater.run();
 }
 
 QString Database::filePath() const {
@@ -30,7 +34,7 @@ QString Database::filePath() const {
 }
 
 QSqlQuery Database::exec(const QString& sql, const QVariantMap& params) const {
-    QSqlQuery query;
+    QSqlQuery query(m_db);
     query.prepare(sql);
 
     for (auto [key, value] : params.asKeyValueRange()) {
@@ -42,4 +46,17 @@ QSqlQuery Database::exec(const QString& sql, const QVariantMap& params) const {
     }
 
     return query;
+}
+
+void Database::updateMetaValue(const QString& name, const QVariant& value) const {
+    exec(QString("UPDATE meta SET %1 = :value").arg(name), { { "value", value } });
+}
+
+QVariant Database::metaValue(const QString& name) const {
+    if (!m_db.tables().contains("meta")) {
+        return QVariant();
+    }
+
+    QSqlQuery query = exec(QString("SELECT %1 FROM meta").arg(name));
+    return query.first() ? query.value(name) : QVariant();
 }
