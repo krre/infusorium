@@ -6,7 +6,7 @@ class RecentWorldsMenu : public QMenu {
 public:
     RecentWorldsMenu(const QStringList& recentWorlds, QWidget* parent = nullptr);
 
-    void addDir(const QString& dir);
+    void addPath(const QString& path);
     QStringList recentWorlds() const;
 
 signals:

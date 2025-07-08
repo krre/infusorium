@@ -31,7 +31,7 @@ void MainWindow::create() {
     if (newWorld.exec() == QDialog::Accepted) {
         m_worldController = new WorldController(newWorld.name(), newWorld.directory(), newWorld.age());
         setCentralWidget(m_worldController);
-        m_recentWorldsMenu->addDir(m_worldController->world()->filePath());
+        m_recentWorldsMenu->addPath(m_worldController->world()->filePath());
         emit worldOpenChanged(true);
         changeWindowTitle();
     }
@@ -156,7 +156,7 @@ void MainWindow::openWorld(const QString& filePath) {
 
     m_worldController = new WorldController(filePath);
     setCentralWidget(m_worldController);
-    m_recentWorldsMenu->addDir(filePath);
+    m_recentWorldsMenu->addPath(filePath);
     emit worldOpenChanged(true);
     changeWindowTitle();
 }

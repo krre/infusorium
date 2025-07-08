@@ -9,28 +9,28 @@ RecentWorldsMenu::RecentWorldsMenu(const QStringList& recentWorlds, QWidget* par
     addSeparator();
     addAction(tr("Clear"), this, &RecentWorldsMenu::clear);
 
-    for (const QString& dir : recentWorlds) {
-        addDir(dir);
+    for (const QString& path : recentWorlds) {
+        addPath(path);
     }
 }
 
-void RecentWorldsMenu::addDir(const QString& dir) {
-    if (dir.isEmpty()) return;
-    if (!QFile::exists(dir)) return;
-    const auto dirActions = actions();
+void RecentWorldsMenu::addPath(const QString& path) {
+    if (path.isEmpty()) return;
+    if (!QFile::exists(path)) return;
+    const auto pathActions = actions();
 
-    for (QAction* action : dirActions) {
-        if (action->text() == dir) {
+    for (QAction* action : pathActions) {
+        if (action->text() == path) {
             removeAction(action);
         }
     }
 
-    auto dirAction = new QAction(dir);
-    connect(dirAction, &QAction::triggered, this, [=, this] {
-        emit activated(dir);
+    auto pathAction = new QAction(path);
+    connect(pathAction, &QAction::triggered, this, [=, this] {
+        emit activated(path);
     });
 
-    insertAction(actions().constFirst(), dirAction);
+    insertAction(actions().constFirst(), pathAction);
 
     if (actions().size() > MaxActionCount + SystemActionCount) {
         removeAction(actions().at(actions().size() - SystemActionCount - 1));
