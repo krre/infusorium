@@ -2,7 +2,6 @@
 #include "RecentWorldsMenu.h"
 #include "WorldController.h"
 #include "core/Application.h"
-#include "core/Utils.h"
 #include "dialog/NewWorld.h"
 #include "dialog/Preferences.h"
 #include "world/World.h"
