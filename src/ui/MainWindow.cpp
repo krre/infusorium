@@ -29,6 +29,7 @@ void MainWindow::create() {
     NewWorld newWorld(m_fileSettings->worldWorkDirectory());
 
     if (newWorld.exec() == QDialog::Accepted) {
+        close();
         m_worldController = new WorldController(newWorld.name(), newWorld.directory(), newWorld.age());
         setCentralWidget(m_worldController);
         m_recentWorldsMenu->addPath(m_worldController->world()->filePath());
