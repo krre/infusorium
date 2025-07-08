@@ -17,19 +17,24 @@ World::~World() {
 }
 
 void World::create(const QString& name, const QString& directory, quint32 age) {
-    m_age = age;
     open(directory + "/" + name + ".db");
     m_database->updateMetaValue("name", name);
+    m_database->updateMetaValue("age", age);
 }
 
 void World::open(const QString& filePath) {
     m_database->open(filePath);
+    m_today = m_database->metaValue("today").toInt();
 }
 
 void World::reset() {
     m_today = 0;
     save();
     emit todayChanged(m_today);
+}
+
+void World::save() {
+    m_database->updateMetaValue("today", m_today);
 }
 
 QString World::filePath() const {
@@ -40,16 +45,16 @@ bool World::isRunning() const {
     return m_running;
 }
 
-quint32 World::today() const {
-    return m_today;
-}
-
 QString World::name() const {
     return m_database->metaValue("name").toString();
 }
 
 quint32 World::age() const {
-    return m_age;
+    return m_database->metaValue("age").toInt();
+}
+
+quint32 World::today() const {
+    return m_today;
 }
 
 void World::run() {
@@ -73,10 +78,7 @@ void World::advance() {
     m_today += 1;
     emit todayChanged(m_today);
 
-    if (m_today == m_age) {
+    if (m_today == age()) {
         stop();
     }
-}
-
-void World::save() const {
 }

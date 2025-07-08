@@ -25,9 +25,11 @@ void Migrater::migration1() const {
     m_db->exec(R"(
         CREATE TABLE meta(
             version INTEGER,
-            name TEXT
+            name TEXT,
+            age INTEGER,
+            today INTEGER
         ))"
     );
 
-    m_db->exec("INSERT INTO meta (version, name) VALUES (1, '')");
+    m_db->exec("INSERT INTO meta (version, name, age, today) VALUES (1, '', 0, 0)");
 }
