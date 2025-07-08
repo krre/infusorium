@@ -13,6 +13,7 @@ add_library(common STATIC
     ui/RecentWorldsMenu.cpp ui/RecentWorldsMenu.h
     core/Utils.h core/Utils.cpp
     ui/dialog/Preferences.h ui/dialog/Preferences.cpp
+    database/Database.cpp database/Database.h
 )
 
 # For visibility in IDE (e.g., Qt Creator)
@@ -21,5 +22,5 @@ add_custom_target(custom
     config.h.in
 )
 
-target_link_libraries(common PUBLIC Qt6::Widgets )
+target_link_libraries(common PUBLIC Qt6::Widgets Qt6::Sql)
 target_include_directories(common PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
