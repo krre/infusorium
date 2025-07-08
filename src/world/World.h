@@ -1,6 +1,7 @@
 #pragma once
 #include <QObject>
 
+class Database;
 class QTimer;
 
 class World : public QObject {
@@ -10,17 +11,15 @@ public:
     ~World();
 
     void create(const QString& name, const QString& directory, quint32 age);
-    void open(const QString& directory);
-    void close();
+    void open(const QString& filePath);
     void reset();
+    QString filePath() const;
 
     bool isRunning() const;
     quint32 today() const;
 
     QString name() const;
     quint32 age() const;
-
-    QString dir() const;
 
 public slots:
     void run();
@@ -35,13 +34,10 @@ private slots:
 
 private:
     void save() const;
-    QString worldFilePath() const;
 
-    QByteArray toJson() const;
-    void fromJson(const QByteArray& json);
+    Database* m_database = nullptr;
 
     QString m_name;
-    QString m_dir;
     quint32 m_age = 0;
     quint32 m_today = 0;
 

@@ -1,9 +1,12 @@
 #include "World.h"
+#include "database/Database.h"
 #include <QTimer>
 #include <QDir>
 #include <QJsonObject>
 
 World::World(QObject* parent) : QObject(parent) {
+    m_database = new Database(this);
+
     m_timer = new QTimer(this);
     m_timer->setInterval(1000);
     connect(m_timer, &QTimer::timeout, this, &World::advance);
@@ -15,33 +18,22 @@ World::~World() {
 
 void World::create(const QString& name, const QString& directory, quint32 age) {
     m_name = name;
-    m_dir = directory + "/" + name;
     m_age = age;
-
-    QDir().mkpath(m_dir);
-    save();
-    open(m_dir);
+    open(directory + "/" + name + ".db");
 }
 
-void World::open(const QString& directory) {
-    m_dir = directory;
-
-    QFile file(worldFilePath());
-    file.open(QIODeviceBase::ReadOnly);
-
-    fromJson(file.readAll());
-}
-
-void World::close() {
-    m_name.clear();
-    m_age = 0;
-    m_today = 0;
+void World::open(const QString& filePath) {
+    m_database->open(filePath);
 }
 
 void World::reset() {
     m_today = 0;
     save();
     emit todayChanged(m_today);
+}
+
+QString World::filePath() const {
+    return m_database->filePath();
 }
 
 bool World::isRunning() const {
@@ -58,10 +50,6 @@ QString World::name() const {
 
 quint32 World::age() const {
     return m_age;
-}
-
-QString World::dir() const {
-    return m_dir;
 }
 
 void World::run() {
@@ -91,27 +79,4 @@ void World::advance() {
 }
 
 void World::save() const {
-    QFile file(worldFilePath());
-    file.open(QIODeviceBase::WriteOnly);
-    file.write(toJson());
-}
-
-QString World::worldFilePath() const {
-    return m_dir + "/world.json";
-}
-
-QByteArray World::toJson() const {
-    QJsonObject world;
-    world["name"] = m_name;
-    world["age"] = int(m_age);
-    world["today"] = int(m_today);
-
-    return QJsonDocument(world).toJson();
-}
-
-void World::fromJson(const QByteArray& json) {
-    QJsonObject world = QJsonDocument::fromJson(json).object();
-    m_name = world["name"].toString();
-    m_age = world["age"].toInt();
-    m_today = world["today"].toInt();
 }

@@ -23,7 +23,7 @@ private slots:
     void open();
     void close();
 
-    void openWorld(const QString& dir);
+    void openWorld(const QString& filePath);
 
     void showPreferences();
     void showAbout();

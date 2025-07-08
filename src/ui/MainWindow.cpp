@@ -31,15 +31,16 @@ void MainWindow::create() {
     if (newWorld.exec() == QDialog::Accepted) {
         m_worldController = new WorldController(newWorld.name(), newWorld.directory(), newWorld.age());
         setCentralWidget(m_worldController);
-        m_recentWorldsMenu->addDir(m_worldController->world()->dir());
+        m_recentWorldsMenu->addDir(m_worldController->world()->filePath());
         emit worldOpenChanged(true);
         changeWindowTitle();
     }
 }
 
 void MainWindow::open() {
-    QString dir = QFileDialog::getExistingDirectory(this, tr("Open World"), m_fileSettings->worldWorkDirectory());
-    openWorld(dir);
+    QString filePath = QFileDialog::getOpenFileName(this, tr("Open World"), m_fileSettings->worldWorkDirectory(),
+                                                    tr("All Files (*);;Database Files (*.db)"));
+    openWorld(filePath);
 }
 
 void MainWindow::close() {
@@ -81,7 +82,7 @@ void MainWindow::readSettings() {
 void MainWindow::writeSettings() {
     m_fileSettings->setMainWindowGeometry(saveGeometry());
     m_fileSettings->setMainWindowState(saveState());
-    m_fileSettings->setMainWindowLastWorld(m_worldController->world()->dir());
+    m_fileSettings->setMainWindowLastWorld(m_worldController->world()->filePath());
 
     m_fileSettings->setRecentWorlds(m_recentWorldsMenu->recentWorlds());
 }
@@ -147,15 +148,15 @@ void MainWindow::createActions() {
     helpMenu->addAction(tr("About %1...").arg(Application::Name), this, &MainWindow::showAbout);
 }
 
-void MainWindow::openWorld(const QString& dir) {
+void MainWindow::openWorld(const QString& filePath) {
     close();
 
-    if (dir.isEmpty()) return;
-    if (!QDir().exists(dir)) return;
+    if (filePath.isEmpty()) return;
+    if (!QFile::exists(filePath)) return;
 
-    m_worldController = new WorldController(dir);
+    m_worldController = new WorldController(filePath);
     setCentralWidget(m_worldController);
-    m_recentWorldsMenu->addDir(dir);
+    m_recentWorldsMenu->addDir(filePath);
     emit worldOpenChanged(true);
     changeWindowTitle();
 }
