@@ -37,7 +37,6 @@ private:
 
     Database* m_database = nullptr;
 
-    QString m_name;
     quint32 m_age = 0;
     quint32 m_today = 0;
 

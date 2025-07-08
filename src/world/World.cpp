@@ -17,9 +17,9 @@ World::~World() {
 }
 
 void World::create(const QString& name, const QString& directory, quint32 age) {
-    m_name = name;
     m_age = age;
     open(directory + "/" + name + ".db");
+    m_database->updateMetaValue("name", name);
 }
 
 void World::open(const QString& filePath) {
@@ -45,7 +45,7 @@ quint32 World::today() const {
 }
 
 QString World::name() const {
-    return m_name;
+    return m_database->metaValue("name").toString();
 }
 
 quint32 World::age() const {
