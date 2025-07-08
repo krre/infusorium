@@ -15,6 +15,8 @@ add_library(common STATIC
     ui/dialog/Preferences.h ui/dialog/Preferences.cpp
     database/Database.cpp database/Database.h
     database/Migrater.cpp database/Migrater.h
+    database/DatabaseException.cpp database/DatabaseException.h
+    core/Exception.cpp core/Exception.h
 )
 
 # For visibility in IDE (e.g., Qt Creator)

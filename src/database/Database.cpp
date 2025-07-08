@@ -1,5 +1,6 @@
 #include "Database.h"
 #include "Migrater.h"
+#include "DatabaseException.h"
 #include <QSqlQuery>
 #include <QSqlError>
 
@@ -22,7 +23,7 @@ void Database::open(const QString& filePath) {
     m_db.setDatabaseName(filePath);
 
     if (!m_db.open()) {
-        throw std::runtime_error(m_db.lastError().text().toStdString());
+        throw DatabaseError(m_db.lastError());
     }
 
     Migrater migrater(this);
@@ -42,7 +43,7 @@ QSqlQuery Database::exec(const QString& sql, const QVariantMap& params) const {
     }
 
     if (!query.exec()) {
-        throw std::runtime_error(query.lastError().text().toStdString());
+        throw SqlQueryError(query);
     }
 
     return query;
