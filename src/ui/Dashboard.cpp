@@ -1,27 +1,27 @@
-#include "WorldController.h"
+#include "Dashboard.h"
 #include "widget/AutomaticSlider.h"
 #include "world/World.h"
 #include <QSpinBox>
 #include <QLabel>
 #include <QVBoxLayout>
 
-WorldController::WorldController(const QString& name, const QString& directory, quint32 age) {
+Dashboard::Dashboard(const QString& name, const QString& directory, quint32 age) {
     m_world = new World(this);
     m_world->create(name, directory, age);
     createWidgets();
 }
 
-WorldController::WorldController(const QString& filePath) {
+Dashboard::Dashboard(const QString& filePath) {
     m_world = new World(this);
     m_world->open(filePath);
     createWidgets();
 }
 
-World* WorldController::world() const {
+World* Dashboard::world() const {
     return m_world;
 }
 
-void WorldController::createWidgets() {
+void Dashboard::createWidgets() {
     auto ageSlider = new AutomaticSlider;
     ageSlider->setOrientation(Qt::Horizontal);
     ageSlider->setMaximum(m_world->age());

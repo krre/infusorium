@@ -1,6 +1,6 @@
 #include "MainWindow.h"
 #include "RecentWorldsMenu.h"
-#include "WorldController.h"
+#include "Dashboard.h"
 #include "core/Application.h"
 #include "dialog/NewWorld.h"
 #include "dialog/Preferences.h"
@@ -30,9 +30,9 @@ void MainWindow::create() {
 
     if (newWorld.exec() == QDialog::Accepted) {
         close();
-        m_worldController = new WorldController(newWorld.name(), newWorld.directory(), newWorld.age());
-        setCentralWidget(m_worldController);
-        m_recentWorldsMenu->addPath(m_worldController->world()->filePath());
+        m_dashboard = new Dashboard(newWorld.name(), newWorld.directory(), newWorld.age());
+        setCentralWidget(m_dashboard);
+        m_recentWorldsMenu->addPath(m_dashboard->world()->filePath());
         emit worldOpenChanged(true);
         changeWindowTitle();
     }
@@ -46,8 +46,8 @@ void MainWindow::open() {
 
 void MainWindow::close() {
     setCentralWidget(nullptr);
-    delete m_worldController;
-    m_worldController = nullptr;
+    delete m_dashboard;
+    m_dashboard = nullptr;
 
     changeWindowTitle();
     emit worldOpenChanged(false);
@@ -83,7 +83,7 @@ void MainWindow::readSettings() {
 void MainWindow::writeSettings() {
     m_fileSettings->setMainWindowGeometry(saveGeometry());
     m_fileSettings->setMainWindowState(saveState());
-    m_fileSettings->setMainWindowLastWorld(m_worldController->world()->filePath());
+    m_fileSettings->setMainWindowLastWorld(m_dashboard->world()->filePath());
 
     m_fileSettings->setRecentWorlds(m_recentWorldsMenu->recentWorlds());
 }
@@ -91,8 +91,8 @@ void MainWindow::writeSettings() {
 void MainWindow::changeWindowTitle() {
     QString title = Application::applicationName();
 
-    if (m_worldController) {
-        title = m_worldController->world()->name() + " - " + title;
+    if (m_dashboard) {
+        title = m_dashboard->world()->name() + " - " + title;
     }
 
     setWindowTitle(title);
@@ -129,15 +129,15 @@ void MainWindow::createActions() {
     resetWorldAction->setEnabled(false);
 
     connect(this, &MainWindow::worldOpenChanged, this, [=, this] (bool open) {
-        runWorldAction->setEnabled(open && m_worldController->world()->today() < m_worldController->world()->age());
+        runWorldAction->setEnabled(open && m_dashboard->world()->today() < m_dashboard->world()->age());
         resetWorldAction->setEnabled(open && !stopWorldAction->isEnabled());
 
         if (open) {
-            connect(runWorldAction, &QAction::triggered, m_worldController->world(), &World::run);
-            connect(stopWorldAction, &QAction::triggered, m_worldController->world(), &World::stop);
+            connect(runWorldAction, &QAction::triggered, m_dashboard->world(), &World::run);
+            connect(stopWorldAction, &QAction::triggered, m_dashboard->world(), &World::stop);
             connect(resetWorldAction, &QAction::triggered, this, &MainWindow::resetWorld);
 
-            connect(m_worldController->world(), &World::runningChanged, this, [=] (bool running) {
+            connect(m_dashboard->world(), &World::runningChanged, this, [=] (bool running) {
                 runWorldAction->setEnabled(!running);
                 stopWorldAction->setEnabled(running);
                 resetWorldAction->setEnabled(!running);
@@ -155,8 +155,8 @@ void MainWindow::openWorld(const QString& filePath) {
     if (filePath.isEmpty()) return;
     if (!QFile::exists(filePath)) return;
 
-    m_worldController = new WorldController(filePath);
-    setCentralWidget(m_worldController);
+    m_dashboard = new Dashboard(filePath);
+    setCentralWidget(m_dashboard);
     m_recentWorldsMenu->addPath(filePath);
     emit worldOpenChanged(true);
     changeWindowTitle();
@@ -169,6 +169,6 @@ void MainWindow::showPreferences() {
 
 void MainWindow::resetWorld() {
     if (QMessageBox::question(this, QString(), tr("Confirm to reset world"))) {
-        m_worldController->world()->reset();
+        m_dashboard->world()->reset();
     }
 }

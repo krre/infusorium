@@ -3,7 +3,7 @@
 
 class FileSettings;
 class RecentWorldsMenu;
-class WorldController;
+class Dashboard;
 
 class QAction;
 
@@ -39,5 +39,5 @@ private:
 
     FileSettings* m_fileSettings = nullptr;
     RecentWorldsMenu* m_recentWorldsMenu = nullptr;
-    WorldController* m_worldController = nullptr;
+    Dashboard* m_dashboard = nullptr;
 };
