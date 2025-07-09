@@ -1,8 +1,6 @@
 #include "World.h"
 #include "database/Database.h"
 #include <QTimer>
-#include <QDir>
-#include <QJsonObject>
 
 World::World(QObject* parent) : QObject(parent) {
     m_database = new Database(this);
