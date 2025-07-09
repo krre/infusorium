@@ -2,7 +2,7 @@
 #include <QMainWindow>
 
 class FileSettings;
-class RecentWorldsMenu;
+class RecentFilesMenu;
 class Dashboard;
 
 class QAction;
@@ -38,6 +38,6 @@ private:
     void resetWorld();
 
     FileSettings* m_fileSettings = nullptr;
-    RecentWorldsMenu* m_recentWorldsMenu = nullptr;
+    RecentFilesMenu* m_recentFilesMenu = nullptr;
     Dashboard* m_dashboard = nullptr;
 };

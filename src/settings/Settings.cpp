@@ -7,8 +7,8 @@ namespace MainWindow {
     constexpr auto LastWorld = "MainWindow/lastWorld";
 }
 
-namespace RecentWorlds {
-    constexpr auto Dir = "RecentWorlds/dir";
+namespace RecentFiles {
+    constexpr auto Path = "RecentFiles/path";
 }
 
 namespace World {
@@ -39,19 +39,19 @@ QString Settings::mainWindowLastWorld() const {
     return value(MainWindow::LastWorld).toString();
 }
 
-void Settings::setRecentWorlds(const QStringList& recentWorlds) {
+void Settings::setRecentFiles(const QStringList& recentFiles) {
     QVariantList list;
 
-    for (const auto& dir : recentWorlds) {
-        list.append(dir);
+    for (const auto& path : recentFiles) {
+        list.append(path);
     }
 
-    setList(RecentWorlds::Dir, list);
+    setList(RecentFiles::Path, list);
 }
 
-QStringList Settings::recentWorlds() const {
+QStringList Settings::recentFiles() const {
     QStringList result;
-    const QVariantList recentFiles = list(RecentWorlds::Dir);
+    const QVariantList recentFiles = list(RecentFiles::Path);
 
     for (const auto& value : recentFiles) {
         result.append(value.toString());

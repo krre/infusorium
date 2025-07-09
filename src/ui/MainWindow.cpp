@@ -1,5 +1,5 @@
 #include "MainWindow.h"
-#include "RecentWorldsMenu.h"
+#include "RecentFilesMenu.h"
 #include "Dashboard.h"
 #include "core/Application.h"
 #include "dialog/NewWorld.h"
@@ -32,7 +32,7 @@ void MainWindow::create() {
         close();
         m_dashboard = new Dashboard(newWorld.name(), newWorld.directory(), newWorld.age());
         setCentralWidget(m_dashboard);
-        m_recentWorldsMenu->addPath(m_dashboard->world()->filePath());
+        m_recentFilesMenu->addPath(m_dashboard->world()->filePath());
         emit worldOpenChanged(true);
         changeWindowTitle();
     }
@@ -85,7 +85,7 @@ void MainWindow::writeSettings() {
     m_fileSettings->setMainWindowState(saveState());
     m_fileSettings->setMainWindowLastWorld(m_dashboard->world()->filePath());
 
-    m_fileSettings->setRecentWorlds(m_recentWorldsMenu->recentWorlds());
+    m_fileSettings->setRecentFiles(m_recentFilesMenu->recentFiles());
 }
 
 void MainWindow::changeWindowTitle() {
@@ -103,9 +103,9 @@ void MainWindow::createActions() {
     fileMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &MainWindow::create);
     fileMenu->addAction(tr("Open..."), Qt::CTRL | Qt::Key_O, this, &MainWindow::open);
 
-    m_recentWorldsMenu = new RecentWorldsMenu(m_fileSettings->recentWorlds(), this);
-    connect(m_recentWorldsMenu, &RecentWorldsMenu::activated, this, &MainWindow::openWorld);
-    fileMenu->addAction(m_recentWorldsMenu->menuAction());
+    m_recentFilesMenu = new RecentFilesMenu(m_fileSettings->recentFiles(), this);
+    connect(m_recentFilesMenu, &RecentFilesMenu::activated, this, &MainWindow::openWorld);
+    fileMenu->addAction(m_recentFilesMenu->menuAction());
 
     auto closeAction = fileMenu->addAction(tr("Close"), Qt::CTRL | Qt::Key_W, this, &MainWindow::close);
     closeAction->setEnabled(false);
@@ -157,7 +157,7 @@ void MainWindow::openWorld(const QString& filePath) {
 
     m_dashboard = new Dashboard(filePath);
     setCentralWidget(m_dashboard);
-    m_recentWorldsMenu->addPath(filePath);
+    m_recentFilesMenu->addPath(filePath);
     emit worldOpenChanged(true);
     changeWindowTitle();
 }

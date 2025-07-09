@@ -14,8 +14,8 @@ public:
     void setMainWindowLastWorld(const QString& lastWorld);
     QString mainWindowLastWorld() const;
 
-    void setRecentWorlds(const QStringList& recentWorlds);
-    QStringList recentWorlds() const;
+    void setRecentFiles(const QStringList& recentFiles);
+    QStringList recentFiles() const;
 
     void setWorldWorkDirectory(const QString& workDirectory);
     QString worldWorkDirectory() const;

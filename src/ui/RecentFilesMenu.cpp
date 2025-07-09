@@ -1,20 +1,20 @@
-#include "RecentWorldsMenu.h"
+#include "RecentFilesMenu.h"
 #include <QFile>
 
 constexpr auto SystemActionCount = 2;
 constexpr auto MaxActionCount = 10;
 
-RecentWorldsMenu::RecentWorldsMenu(const QStringList& recentWorlds, QWidget* parent)
-    : QMenu(tr("Recent Worlds"), parent) {
+RecentFilesMenu::RecentFilesMenu(const QStringList& recentFiles, QWidget* parent)
+    : QMenu(tr("Recent Files"), parent) {
     addSeparator();
-    addAction(tr("Clear"), this, &RecentWorldsMenu::clear);
+    addAction(tr("Clear"), this, &RecentFilesMenu::clear);
 
-    for (const QString& path : recentWorlds) {
+    for (const QString& path : recentFiles) {
         addPath(path);
     }
 }
 
-void RecentWorldsMenu::addPath(const QString& path) {
+void RecentFilesMenu::addPath(const QString& path) {
     if (path.isEmpty()) return;
     if (!QFile::exists(path)) return;
     const auto pathActions = actions();
@@ -37,7 +37,7 @@ void RecentWorldsMenu::addPath(const QString& path) {
     }
 }
 
-QStringList RecentWorldsMenu::recentWorlds() const {
+QStringList RecentFilesMenu::recentFiles() const {
     QStringList result;
 
     for (int i = 0; i < actions().size() - SystemActionCount; ++i) {
@@ -47,7 +47,7 @@ QStringList RecentWorldsMenu::recentWorlds() const {
     return result;
 }
 
-void RecentWorldsMenu::clear() {
+void RecentFilesMenu::clear() {
     for (int i = actions().size() - SystemActionCount - 1; i >= 0; --i) {
         removeAction(actions().at(i));
     }
