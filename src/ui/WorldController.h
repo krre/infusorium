@@ -7,7 +7,7 @@ class WorldController : public QWidget {
     Q_OBJECT
 public:
     WorldController(const QString& name, const QString& directory, quint32 age);
-    WorldController(const QString& directory);
+    WorldController(const QString& filePath);
 
     World* world() const;
 

@@ -11,9 +11,9 @@ WorldController::WorldController(const QString& name, const QString& directory, 
     createWidgets();
 }
 
-WorldController::WorldController(const QString& directory) {
+WorldController::WorldController(const QString& filePath) {
     m_world = new World(this);
-    m_world->open(directory);
+    m_world->open(filePath);
     createWidgets();
 }
 
