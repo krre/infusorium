@@ -1,5 +1,5 @@
 #include "Dashboard.h"
-#include "widget/AutomaticSlider.h"
+#include "widget/AutoSlider.h"
 #include "world/World.h"
 #include <QSpinBox>
 #include <QLabel>
@@ -22,7 +22,7 @@ World* Dashboard::world() const {
 }
 
 void Dashboard::createWidgets() {
-    auto ageSlider = new AutomaticSlider;
+    auto ageSlider = new AutoSlider;
     ageSlider->setOrientation(Qt::Horizontal);
     ageSlider->setMaximum(m_world->age());
     ageSlider->setValue(m_world->today());

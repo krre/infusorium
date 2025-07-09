@@ -1,9 +1,9 @@
 #pragma once
 #include <QSlider>
 
-class AutomaticSlider : public QSlider {
+class AutoSlider : public QSlider {
 public:
-    AutomaticSlider();
+    AutoSlider();
 
 protected:
     void mousePressEvent(QMouseEvent* event) override;

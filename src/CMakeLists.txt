@@ -9,7 +9,7 @@ add_library(common STATIC
     ui/widget/BrowseLayout.cpp ui/widget/BrowseLayout.h
     world/World.h world/World.cpp
     ui/Dashboard.h ui/Dashboard.cpp
-    ui/widget/AutomaticSlider.h ui/widget/AutomaticSlider.cpp
+    ui/widget/AutoSlider.h ui/widget/AutoSlider.cpp
     ui/RecentWorldsMenu.cpp ui/RecentWorldsMenu.h
     core/Utils.h core/Utils.cpp
     ui/dialog/Preferences.h ui/dialog/Preferences.cpp
