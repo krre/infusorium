@@ -13,7 +13,7 @@ public:
     MainWindow(QWidget* parent = nullptr);
 
 signals:
-    void worldOpenChanged(bool open);
+    void fileOpenChanged(bool isOpen);
 
 protected:
     void closeEvent(QCloseEvent* event) override;

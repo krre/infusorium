@@ -33,7 +33,7 @@ void MainWindow::create() {
         m_dashboard = new Dashboard(newWorld.name(), newWorld.directory(), newWorld.age());
         setCentralWidget(m_dashboard);
         m_recentFilesMenu->addPath(m_dashboard->world()->filePath());
-        emit worldOpenChanged(true);
+        emit fileOpenChanged(true);
         changeWindowTitle();
     }
 }
@@ -100,7 +100,7 @@ void MainWindow::createActions() {
 
     auto closeAction = fileMenu->addAction(tr("Close"), Qt::CTRL | Qt::Key_W, this, &MainWindow::closeFile);
     closeAction->setEnabled(false);
-    connect(this, &MainWindow::worldOpenChanged, closeAction, &QAction::setEnabled);
+    connect(this, &MainWindow::fileOpenChanged, closeAction, &QAction::setEnabled);
 
     fileMenu->addSeparator();
     fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, this, &QMainWindow::close);
@@ -119,7 +119,7 @@ void MainWindow::createActions() {
     auto resetWorldAction = worldMenu->addAction(tr("Reset"));
     resetWorldAction->setEnabled(false);
 
-    connect(this, &MainWindow::worldOpenChanged, this, [=, this] (bool open) {
+    connect(this, &MainWindow::fileOpenChanged, this, [=, this] (bool open) {
         runWorldAction->setEnabled(open && m_dashboard->world()->today() < m_dashboard->world()->age());
         resetWorldAction->setEnabled(open && !stopWorldAction->isEnabled());
 
@@ -149,7 +149,7 @@ void MainWindow::openFile(const QString& filePath) {
     m_dashboard = new Dashboard(filePath);
     setCentralWidget(m_dashboard);
     m_recentFilesMenu->addPath(filePath);
-    emit worldOpenChanged(true);
+    emit fileOpenChanged(true);
     changeWindowTitle();
 }
 
@@ -159,7 +159,7 @@ void MainWindow::closeFile() {
     m_dashboard = nullptr;
 
     changeWindowTitle();
-    emit worldOpenChanged(false);
+    emit fileOpenChanged(false);
 }
 
 void MainWindow::showPreferences() {
