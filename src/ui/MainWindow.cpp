@@ -41,7 +41,7 @@ void MainWindow::create() {
 void MainWindow::open() {
     QString filePath = QFileDialog::getOpenFileName(this, tr("Open World"), m_fileSettings->worldWorkDirectory(),
                                                     tr("All Files (*);;Database Files (*.db)"));
-    openWorld(filePath);
+    openFile(filePath);
 }
 
 void MainWindow::close() {
@@ -77,7 +77,7 @@ void MainWindow::readSettings() {
     }
 
     restoreState(m_fileSettings->mainWindowState());
-    openWorld(m_fileSettings->mainWindowLastFile());
+    openFile(m_fileSettings->mainWindowLastFile());
 }
 
 void MainWindow::writeSettings() {
@@ -104,7 +104,7 @@ void MainWindow::createActions() {
     fileMenu->addAction(tr("Open..."), Qt::CTRL | Qt::Key_O, this, &MainWindow::open);
 
     m_recentFilesMenu = new RecentFilesMenu(m_fileSettings->recentFiles(), this);
-    connect(m_recentFilesMenu, &RecentFilesMenu::activated, this, &MainWindow::openWorld);
+    connect(m_recentFilesMenu, &RecentFilesMenu::activated, this, &MainWindow::openFile);
     fileMenu->addAction(m_recentFilesMenu->menuAction());
 
     auto closeAction = fileMenu->addAction(tr("Close"), Qt::CTRL | Qt::Key_W, this, &MainWindow::close);
@@ -149,7 +149,7 @@ void MainWindow::createActions() {
     helpMenu->addAction(tr("About %1...").arg(Application::Name), this, &MainWindow::showAbout);
 }
 
-void MainWindow::openWorld(const QString& filePath) {
+void MainWindow::openFile(const QString& filePath) {
     close();
 
     if (filePath.isEmpty()) return;
