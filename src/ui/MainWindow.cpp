@@ -29,7 +29,7 @@ void MainWindow::create() {
     NewWorld newWorld(m_fileSettings->worldWorkDirectory());
 
     if (newWorld.exec() == QDialog::Accepted) {
-        close();
+        closeFile();
         m_dashboard = new Dashboard(newWorld.name(), newWorld.directory(), newWorld.age());
         setCentralWidget(m_dashboard);
         m_recentFilesMenu->addPath(m_dashboard->world()->filePath());
@@ -42,15 +42,6 @@ void MainWindow::open() {
     QString filePath = QFileDialog::getOpenFileName(this, tr("Open World"), m_fileSettings->worldWorkDirectory(),
                                                     tr("All Files (*);;Database Files (*.db)"));
     openFile(filePath);
-}
-
-void MainWindow::close() {
-    setCentralWidget(nullptr);
-    delete m_dashboard;
-    m_dashboard = nullptr;
-
-    changeWindowTitle();
-    emit worldOpenChanged(false);
 }
 
 void MainWindow::showAbout() {
@@ -107,7 +98,7 @@ void MainWindow::createActions() {
     connect(m_recentFilesMenu, &RecentFilesMenu::activated, this, &MainWindow::openFile);
     fileMenu->addAction(m_recentFilesMenu->menuAction());
 
-    auto closeAction = fileMenu->addAction(tr("Close"), Qt::CTRL | Qt::Key_W, this, &MainWindow::close);
+    auto closeAction = fileMenu->addAction(tr("Close"), Qt::CTRL | Qt::Key_W, this, &MainWindow::closeFile);
     closeAction->setEnabled(false);
     connect(this, &MainWindow::worldOpenChanged, closeAction, &QAction::setEnabled);
 
@@ -150,7 +141,7 @@ void MainWindow::createActions() {
 }
 
 void MainWindow::openFile(const QString& filePath) {
-    close();
+    closeFile();
 
     if (filePath.isEmpty()) return;
     if (!QFile::exists(filePath)) return;
@@ -160,6 +151,15 @@ void MainWindow::openFile(const QString& filePath) {
     m_recentFilesMenu->addPath(filePath);
     emit worldOpenChanged(true);
     changeWindowTitle();
+}
+
+void MainWindow::closeFile() {
+    setCentralWidget(nullptr);
+    delete m_dashboard;
+    m_dashboard = nullptr;
+
+    changeWindowTitle();
+    emit worldOpenChanged(false);
 }
 
 void MainWindow::showPreferences() {

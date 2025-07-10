@@ -21,9 +21,9 @@ protected:
 private slots:
     void create();
     void open();
-    void close();
 
     void openFile(const QString& filePath);
+    void closeFile();
 
     void showPreferences();
     void showAbout();
