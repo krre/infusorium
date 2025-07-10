@@ -4,7 +4,7 @@
 namespace MainWindow {
     constexpr auto Geometry = "MainWindow/geometry";
     constexpr auto State = "MainWindow/state";
-    constexpr auto LastWorld = "MainWindow/lastWorld";
+    constexpr auto LastFile = "MainWindow/lastFile";
 }
 
 namespace RecentFiles {
@@ -31,12 +31,12 @@ QByteArray Settings::mainWindowState() const {
     return value(MainWindow::State).toByteArray();
 }
 
-void Settings::setMainWindowLastWorld(const QString& lastWorld) {
-    setValue(MainWindow::LastWorld, lastWorld);
+void Settings::setMainWindowLastFile(const QString& lastFile) {
+    setValue(MainWindow::LastFile, lastFile);
 }
 
-QString Settings::mainWindowLastWorld() const {
-    return value(MainWindow::LastWorld).toString();
+QString Settings::mainWindowLastFile() const {
+    return value(MainWindow::LastFile).toString();
 }
 
 void Settings::setRecentFiles(const QStringList& recentFiles) {

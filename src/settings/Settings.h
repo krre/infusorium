@@ -11,8 +11,8 @@ public:
     void setMainWindowState(const  QByteArray& state);
     QByteArray mainWindowState() const;
 
-    void setMainWindowLastWorld(const QString& lastWorld);
-    QString mainWindowLastWorld() const;
+    void setMainWindowLastFile(const QString& lastFile);
+    QString mainWindowLastFile() const;
 
     void setRecentFiles(const QStringList& recentFiles);
     QStringList recentFiles() const;

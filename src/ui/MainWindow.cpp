@@ -77,13 +77,13 @@ void MainWindow::readSettings() {
     }
 
     restoreState(m_fileSettings->mainWindowState());
-    openWorld(m_fileSettings->mainWindowLastWorld());
+    openWorld(m_fileSettings->mainWindowLastFile());
 }
 
 void MainWindow::writeSettings() {
     m_fileSettings->setMainWindowGeometry(saveGeometry());
     m_fileSettings->setMainWindowState(saveState());
-    m_fileSettings->setMainWindowLastWorld(m_dashboard->world()->filePath());
+    m_fileSettings->setMainWindowLastFile(m_dashboard->world()->filePath());
 
     m_fileSettings->setRecentFiles(m_recentFilesMenu->recentFiles());
 }
