@@ -49,7 +49,7 @@ quint32 NewWorld::age() const {
 }
 
 void NewWorld::accept() {
-    if (QDir().exists(directory() + "/" + name())) {
+    if (QDir().exists(directory() + "/" + name() + ".db")) {
         QMessageBox::critical(this, QString(), tr("World already exists!"));
     } else {
         StandardDialog::accept();
